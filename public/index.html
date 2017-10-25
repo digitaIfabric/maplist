@@ -49,7 +49,19 @@
           width: 175px;
       }
 
-      #search-input:focus {
+      #name-input {
+          background-color: #fff;
+          font-family: Roboto;
+          font-size: 15px;
+          font-weight: 300;
+          margin-top: 13px;
+          margin-right: 12px;
+          padding: 0 5px 0 5px;
+          text-overflow: ellipsis;
+          width: 175px;
+      }
+
+      #search-input:focus, #name-input:focus{
           border-color: #4d90fe;
       }
 
@@ -58,6 +70,7 @@
   </head>
   <body>
   <input id="search-input" class="controls" type="text" placeholder="Add a location">
+  <input id="name-input" class="controls" type="text" placeholder="Add a map name">
   <div id="map"></div>
 
     <script>
@@ -83,9 +96,6 @@
         var input = document.getElementById('search-input');
         var searchBox = new google.maps.places.SearchBox(input);
         map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-        //var latlng = searchBox.getLatLng();
-        //console.log(searchBox);
-        //console.log(latlng);
 
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
@@ -98,8 +108,14 @@
           searchBox.addListener('places_changed', function() {
               var places = searchBox.getPlaces();
 
+              //Console logs for places array;
+              console.log(places[0]);
+              console.log("{lat: ",places[0].geometry.location.lat(),"lng: ",places[0].geometry.location.lng(),"}");
               console.log(places[0].geometry.location.lat());
               console.log(places[0].geometry.location.lng());
+              console.log("title: ", places[0].name);
+              console.log("description: ", places[0].website);
+              //console.log("image: ", places[0].photos["0"].getUrl());
 
               if (places.length == 0) {
                   return;
