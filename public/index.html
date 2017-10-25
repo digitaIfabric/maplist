@@ -8,8 +8,8 @@
     <!--<link rel="stylesheet" href="/styles/layout.css" type="text/css"/>-->
 
     <!-- Map script -->
-    <script type="text/javascript" src="./scripts/map.js"></script>
-    <script type="text/javascript" src="/scripts/map-2.js"></script>
+    <!--<script type="text/javascript" src="./scripts/map.js"></script>-->
+    <!--<script type="text/javascript" src="/scripts/map-2.js"></script>-->
 
     <!-- Google maps script -->
     <!--<script async defer-->
@@ -98,7 +98,8 @@
           searchBox.addListener('places_changed', function() {
               var places = searchBox.getPlaces();
 
-              //console.log(searchBox.getLatLng());
+              console.log(places[0].geometry.location.lat());
+              console.log(places[0].geometry.location.lng());
 
               if (places.length == 0) {
                   return;
