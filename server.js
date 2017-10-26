@@ -56,4 +56,4 @@ app.get("/maps", (req, res) => {
       console.log('results', results);
       res.json(results);
     });
-})
+});
