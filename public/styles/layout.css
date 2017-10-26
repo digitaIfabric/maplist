@@ -16,58 +16,45 @@ html, body {
   padding: 0;
 }
 
-#contributor-display {
+.side-disp {
   background-color: transparent;
   color: #ff4a53;
   border: none;
   position: fixed;
   font-size: 48px;
+  z-index: 1000;
+}
+
+#contributor-display {
   top: 200px;
   left: 10px;
-  z-index: 1000;
+}
+
+.side-div-left {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: red;
+  position: fixed;
+  padding: 8px;
+  font-size: 24px;
+  left: 70px;
+  z-index: 999;
+  display: none;
 }
 
 #contributor-div {
-  background-color: rgba(255, 255, 255, 0.7);
-  color: red;
-  position: fixed;
-  padding: 8px;
-  font-size: 24px;
   top: 208px;
-  left: -440px;
-  z-index: 999;
 }
 
 #likes-display {
-  background-color: transparent;
-  color: #ff4a53;
-  border: none;
-  position: fixed;
-  font-size: 48px;
   top: 400px;
   left: 10px;
-  z-index: 1000;
 }
 
 #likes-div {
-  background-color: rgba(255, 255, 255, 0.7);
-  color: red;
-  position: fixed;
-  padding: 8px;
-  font-size: 24px;
   top: 408px;
-  left: -440px;
-  z-index: 999;
 }
 
 #maps-display {
-  background-color: transparent;
-  color: #ff4a53;
-  border: none;
-  position: fixed;
-  float: right;
-  font-size: 48px;
   top: 200px;
   right: 10px;
-  z-index: 1000;
 }

@@ -1,8 +1,9 @@
 $(document).ready(function() {
   $("#likes-display").click(function(){
-    $("#likes-div").animate({left: '70px'});
+    $("#likes-div").slideToggle("fast");
   });
+
   $("#contributor-display").click(function(){
-    $("#contributor-div").animate({left: '70px'});
+    $("#contributor-div").slideToggle("fast");
   });
 });
