@@ -53,7 +53,21 @@ app.get("/maps", (req, res) => {
     .select("*")
     .from("maps")
     .then((results) => {
-      console.log('results', results);
       res.json(results);
     });
 });
+
+//Get the list of Users who contributed to and liked a map
+app.get("/maps/:id/likes", (req, res) => {
+  console.log(req.params.id);
+  knex
+    .select("*")
+    .from("like_list").innerJoin("users", "user_id", "users.id")
+    .where("map_id", req.params.id)
+    .then((results) => {
+      results.forEach(function(e) {
+        console.log(e.user_name);
+      });
+    });
+})
+
