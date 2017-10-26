@@ -74,7 +74,7 @@
             position: absolute;
             z-index: 3;
             bottom: 20px;
-            left: 7px;
+            right: 7px;
 
             /*border: 1px solid black;*/
             /*border-radius: 5px;*/
@@ -141,7 +141,20 @@
           mapTypeControlOptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                     'styled_map']
-          }
+          },
+            zoomControl: true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.RIGHT_CENTER
+            },
+            scaleControl: true,
+            streetViewControl: true,
+            streetViewControlOptions: {
+                position: google.maps.ControlPosition.LEFT_BOTTOM
+            },
+            fullscreenControl: false,
+            fullscreenControlOptions: {
+                position: google.maps.ControlPosition.TOP_RIGHT
+            },
         });
 
         // Create the search box and link it to the UI element.
