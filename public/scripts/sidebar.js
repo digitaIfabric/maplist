@@ -41,7 +41,7 @@ $(document).ready(function() {
                 // alert("You added this map (NOT YET)");
                 $("#search-input").slideToggle("fast");
                 $("#name-input").slideToggle("fast");
-                $("#search-input").select();
+                // $("#search-input").select();
             }
         }
     });

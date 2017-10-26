@@ -98,7 +98,9 @@ html, body {
 }
 
 #name-input {
-  background-color: #fff;
+  background-color: black;
+  opacity: 0.77;
+  color: white;
   font-family: Roboto;
   font-size: 15px;
   font-weight: 300;

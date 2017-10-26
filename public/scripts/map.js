@@ -30,6 +30,13 @@ function CenterControl(controlDiv, map) {
     });
 }
 
+createInfoWindow = function(markerTitle){
+var WO = new google.maps.InfoWindow({
+  content: '<p>G' + markerTitle + '</p>'
+});
+    return WO;
+}
+
 function initMap() {
 
     // Create a new StyledMapType object, passing it an array of styles,
@@ -95,17 +102,31 @@ function initMap() {
         console.log(places[0].geometry.location.lng());
         console.log("title: ", places[0].name);
         console.log("description: ", places[0].website);
-        //console.log("image: ", places[0].photos["0"].getUrl());
+        console.log("image: ", places[0].icon);
 
         if (places.length == 0) {
             return;
         }
-
+      
+        var infowindows = {};
         // Clear out the old markers.
         markers.forEach(function(marker) {
+              var contentString = '<p>Test</p>';
+              var infowindow = new google.maps.InfoWindow({
+                content: contentString
+              });
+            infowindows[marker.title] = {
+                contentString: contentString,
+                infoWindow: infowindow,
+                marker: marker
+            };
             marker.setMap(null);
+            marker.addListener('click', function() {
+                infowindows[marker.title].infoWindow.open(map, marker);
+          });
         });
         markers = [];
+
 
         // For each place, get the icon, name and location.
         var bounds = new google.maps.LatLngBounds();
@@ -130,7 +151,11 @@ function initMap() {
                 position: place.geometry.location
             }));
 
-            if (place.geometry.viewport) {
+              markers[markers.length - 1].addListener('click', function() {
+                createInfoWindow(markers[markers.length -1].title).open(map, markers[markers.length - 1]);
+              });
+
+          if (place.geometry.viewport) {
                 // Only geocodes have viewport.
                 bounds.union(place.geometry.viewport);
             } else {
@@ -140,17 +165,19 @@ function initMap() {
         map.fitBounds(bounds);
     });
 
-    var marker = new google.maps.Marker({
-        position: {lat:  45.433047, lng: -73.875438},
-        map: map,
-        label: 'A'
-        //var iconDirectory: " ";
-        //icon: iconDirectory + 'ssc.png'
-        //,icon: '/Users/dave/ssc.png'
-    });
-
-
     //Associate the styled map with the MapTypeId and set it to display.
     map.mapTypes.set('styled_map', styledMapType);
     map.setMapTypeId('styled_map');
+
+  // var uluru = {lat: -25.363, lng: 131.044};
+  //
+  //
+  // var marker = new google.maps.Marker({
+  //   position: uluru,
+  //   map: map,
+  //   title: 'Uluru (Ayers Rock)'
+  // });
+
+
+
 }
