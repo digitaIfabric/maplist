@@ -48,6 +48,7 @@ app.listen(PORT, () => {
 });
 
 // Get the list of maps created
+// error parameter to be added (req is what we recieve, res is what we respond)
 app.get("/maps", (req, res) => {
   knex
     .select("*")
@@ -56,4 +57,15 @@ app.get("/maps", (req, res) => {
       console.log('results', results);
       res.json(results);
     });
-})
+});
+
+app.post("/maps/new", (req, res) => {
+    // const mapid = req.params.id;
+    const mapName = req.body.name;
+    knex('maps').insert({name: mapName}).then((results) => {
+        console.log("Added name to database");
+    }).catch((err) => {
+        console.log("Error", err);
+    })
+
+});
