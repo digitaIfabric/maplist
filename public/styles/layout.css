@@ -38,6 +38,7 @@ html, body {
   font-size: 24px;
   z-index: 999;
   display: none;
+  border-radius: 5px;
 }
 
 #contributor-div {
