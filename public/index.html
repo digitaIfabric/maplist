@@ -54,16 +54,33 @@
           font-family: Roboto;
           font-size: 15px;
           font-weight: 300;
-          margin-top: 13px;
-          margin-right: 12px;
           padding: 0 5px 0 5px;
           text-overflow: ellipsis;
           width: 175px;
+          position: absolute;
+          left: 75vh;
+          top: 50vh;
+          z-index: 2;
+          display: none;
       }
 
       #search-input:focus, #name-input:focus{
           border-color: #4d90fe;
       }
+
+        .new-map {
+            height: 60px;
+            width: 60px;
+            position: absolute;
+            z-index: 3;
+            bottom: 20px;
+            left: 7px;
+
+            /*border: 1px solid black;*/
+            /*border-radius: 5px;*/
+            /*margin: 0.3em;*/
+            /*margin-right: 10px;*/
+        }
 
     </style>
 
@@ -71,9 +88,44 @@
   <body>
   <input id="search-input" class="controls" type="text" placeholder="Add a location">
   <input id="name-input" class="controls" type="text" placeholder="Add a map name">
-  <div id="map"></div>
+  <img src="images/new-map.png" class="new-map">
+  <div id="map">
+      <img src="images/new-map.png" class="new-map">
+  </div>
 
     <script>
+        function CenterControl(controlDiv, map) {
+
+            // Set CSS for the control border.
+            var controlUI = document.createElement('div');
+            controlUI.style.backgroundColor = '#fff';
+            controlUI.style.border = '2px solid #fff';
+            controlUI.style.borderRadius = '3px';
+            controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+            controlUI.style.cursor = 'pointer';
+            controlUI.style.marginRight = '10px';
+            controlUI.style.marginTop = '10px';
+            controlUI.style.textAlign = 'center';
+            controlUI.title = 'Click to recenter the map';
+            controlDiv.appendChild(controlUI);
+
+            // Set CSS for the control interior.
+            var controlText = document.createElement('div');
+            controlText.style.color = 'rgb(25,25,25)';
+            controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+            controlText.style.fontSize = '13px';
+            controlText.style.lineHeight = '30px';
+            controlText.style.paddingLeft = '5px';
+            controlText.style.paddingRight = '5px';
+            controlText.innerHTML = 'Login';
+            controlUI.appendChild(controlText);
+
+            // Setup the click event listeners: simply set the map to Chicago.
+            controlUI.addEventListener('click', function() {
+                map.setCenter({lat: 45.4998913, lng: -73.5605561});
+            });
+        }
+
       function initMap() {
 
         // Create a new StyledMapType object, passing it an array of styles,
@@ -101,6 +153,14 @@
         map.addListener('bounds_changed', function() {
           searchBox.setBounds(map.getBounds());
         });
+
+          // Create the DIV to hold the control and call the CenterControl()
+          // constructor passing in this DIV.
+          var centerControlDiv = document.createElement('div');
+          var centerControl = new CenterControl(centerControlDiv, map);
+
+          centerControlDiv.index = 1;
+          map.controls[google.maps.ControlPosition.TOP_RIGHT].push(centerControlDiv);
 
           var markers = [];
           // Listen for the event fired when the user selects a prediction and retrieve
@@ -169,12 +229,12 @@
           //,icon: '/Users/dave/ssc.png'
         });
 
+
         //Associate the styled map with the MapTypeId and set it to display.
         map.mapTypes.set('styled_map', styledMapType);
         map.setMapTypeId('styled_map');
       }
     </script>
-
 
   </body>
 </html>
