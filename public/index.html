@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-    <title>maplist</title>
+    <title>maplist.world</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
-    
+
     <!-- App CSS -->
     <!--<link rel="stylesheet" href="/styles/layout.css" type="text/css"/>-->
 
@@ -50,9 +50,9 @@
           width: 175px;
           position: absolute;
           left: 50% !important;
-          top: 50% !important;
+          top: 10px !important;
+          /*top: 50% !important;*/
           -webkit-transform: translate(-50%, -50%);
-          /*-webkit-transform: translate(0, -50%);*/
       }
 
       #name-input {
@@ -79,7 +79,7 @@
             width: 60px;
             position: absolute;
             z-index: 3;
-            bottom: 20px;
+            bottom: 14px;
             right: 7px;
 
             /*border: 1px solid black;*/
@@ -92,7 +92,7 @@
 
   </head>
   <body>
-  <input id="search-input" class="controls" type="text" placeholder="Search a location">
+  <input id="search-input" class="controls" type="text" placeholder="Add a point">
   <input id="name-input" class="controls" type="text" placeholder="Add a map name">
   <img src="images/new-map.png" class="new-map">
   <div id="map">
@@ -142,17 +142,18 @@
         // Create a map object, and include the MapTypeId to add
         // to the map type control.
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 45.4998913, lng: -73.5605561},
-          zoom: 13,
-          mapTypeControlOptions: {
+            center: {lat: 45.4998913, lng: -73.5605561},
+            zoom: 13,
+            mapControl: false,
+            mapTypeControlOptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
                     'styled_map'],
             style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
             position: google.maps.ControlPosition.TOP_LEFT
-          },
+            },
             zoomControl: true,
             zoomControlOptions: {
-                position: google.maps.ControlPosition.LEFT_BOTTOM
+                position: google.maps.ControlPosition.LEFT_CENTER
             },
             scaleControl: true,
             streetViewControl: true,
