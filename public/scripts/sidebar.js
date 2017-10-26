@@ -13,8 +13,17 @@ $(document).ready(function() {
     });
 
     // Added click event for new icon map
-    $("#map-new").click(function(){
-        $("#").slideToggle("fast");
+    $("#new-map-icon").click(function(){
+        $("#name-input").slideToggle("fast");
+        $("#name-input").select();
+    });
+    $("#name-input").keypress(function(e) {
+        if(e.which == 13) {
+            alert('You added a map to the database (NOT YET)');
+            $("#search-input").slideToggle("fast");
+            $("#name-input").slideToggle("fast");
+            $("#search-input").select();
+        }
     });
 
 });
