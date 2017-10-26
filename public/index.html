@@ -5,258 +5,36 @@
     <meta charset="utf-8">
     <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
 
-    <!-- App CSS -->
-    <!--<link rel="stylesheet" href="/styles/layout.css" type="text/css"/>-->
+    <!-- CSS -->
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css"/>
 
-    <!-- Map script -->
-    <!--<script type="text/javascript" src="./scripts/map.js"></script>-->
-    <!--<script type="text/javascript" src="/scripts/map-2.js"></script>-->
-
-    <!-- Google maps script -->
-    <!--<script async defer-->
-            <!--src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDOy8F-gfw51GfRR39RtznmMi6He3d6rmY&callback=initMap">-->
-    <!--</script>-->
-
-    <!-- Google places script -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbbB_lYvaYQB11lITKv_zIf7wk_Y8O2uM&libraries=places&callback=initMap"
-            async defer></script>
-
-    <style>
-      #map {
-      height: 100%;
-      }
-
-      html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      }
-
-      .search-controls label {
-          font-family: Roboto;
-          font-size: 13px;
-          font-weight: 300;
-      }
-
-      #search-input {
-          background-color: #fff;
-          font-family: Roboto;
-          font-size: 15px;
-          font-weight: 300;
-          margin-top: 13px;
-          /*margin-left: 12px;*/
-          padding: 0 5px 0 5px;
-          text-overflow: ellipsis;
-          width: 175px;
-          position: absolute;
-          left: 50% !important;
-          top: 10px !important;
-          /*top: 50% !important;*/
-          -webkit-transform: translate(-50%, -50%);
-      }
-
-      #name-input {
-          background-color: #fff;
-          font-family: Roboto;
-          font-size: 15px;
-          font-weight: 300;
-          padding: 0 5px 0 5px;
-          text-overflow: ellipsis;
-          width: 175px;
-          position: absolute;
-          left: 75vh;
-          top: 50vh;
-          z-index: 2;
-          display: none;
-      }
-
-      #search-input:focus, #name-input:focus{
-          border-color: #4d90fe;
-      }
-
-        .new-map {
-            height: 60px;
-            width: 60px;
-            position: absolute;
-            z-index: 3;
-            bottom: 14px;
-            right: 7px;
-
-            /*border: 1px solid black;*/
-            /*border-radius: 5px;*/
-            /*margin: 0.3em;*/
-            /*margin-right: 10px;*/
-        }
-
-    </style>
+    <!--Font awesome icons-->
+    <script src="https://use.fontawesome.com/29c7bb25f3.js"></script>
 
   </head>
   <body>
   <input id="search-input" class="controls" type="text" placeholder="Add a point">
   <input id="name-input" class="controls" type="text" placeholder="Add a map name">
+  <input id="search-input" class="controls" type="text" placeholder="Add a location">
+  <input id="name-input" class="controls" type="text" placeholder="Add a map name">
+  <button id="contributor-display" class="side-disp"><i class="fa fa-users" aria-hidden="true"></i></button>
+  <button id="likes-display" class="side-disp"><i class="fa fa-heart" aria-hidden="true"></i></button>
+  <button id="maps-display" class="side-disp"><i class="fa fa-map" aria-hidden="true"></i></button>
+  <div id="contributor-div" class="side-div">This is the contributor div!</div>
+  <div id="likes-div" class="side-div">This is the likes div!</div>
+  <div id="maps-div" class="side-div">This is the maps div!</div>
   <img src="images/new-map.png" class="new-map">
-  <div id="map">
-      <img src="images/new-map.png" class="new-map">
-  </div>
+  <div id="map"></div>
 
-    <script>
-        function CenterControl(controlDiv, map) {
+  <!-- David map script -->
+  <script type="text/javascript" src="/scripts/map.js"></script>
+  <!-- Google places script -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDbbB_lYvaYQB11lITKv_zIf7wk_Y8O2uM&libraries=places&callback=initMap"></script>
+  <!-- jQuery script -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <!-- Cem sidebar script -->
+  <script type="text/javascript" src="/scripts/sidebar.js"></script>
 
-            // Set CSS for the control border.
-            var controlUI = document.createElement('div');
-            controlUI.style.backgroundColor = '#fff';
-            controlUI.style.border = '2px solid #fff';
-            controlUI.style.borderRadius = '3px';
-            controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
-            controlUI.style.cursor = 'pointer';
-            controlUI.style.marginRight = '10px';
-            controlUI.style.marginTop = '10px';
-            controlUI.style.textAlign = 'center';
-            controlUI.title = 'Click to recenter the map';
-            controlDiv.appendChild(controlUI);
-
-            // Set CSS for the control interior.
-            var controlText = document.createElement('div');
-            controlText.style.color = 'rgb(25,25,25)';
-            controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-            controlText.style.fontSize = '13px';
-            controlText.style.lineHeight = '30px';
-            controlText.style.paddingLeft = '5px';
-            controlText.style.paddingRight = '5px';
-            controlText.innerHTML = 'Login';
-            controlUI.appendChild(controlText);
-
-            // Setup the click event listeners: simply set the map to Chicago.
-            controlUI.addEventListener('click', function() {
-                map.setCenter({lat: 45.4998913, lng: -73.5605561});
-            });
-        }
-
-      function initMap() {
-
-        // Create a new StyledMapType object, passing it an array of styles,
-        // and the name to be displayed on the map type control.
-        var styledMapType = new google.maps.StyledMapType(
-            [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f5f5f5"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#9a908c"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#a3ccff"},{"visibility":"on"}]}],{name: 'Styled Map'});
-
-        // Create a map object, and include the MapTypeId to add
-        // to the map type control.
-        var map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 45.4998913, lng: -73.5605561},
-            zoom: 13,
-            mapControl: false,
-            mapTypeControlOptions: {
-            mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
-                    'styled_map'],
-            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
-            position: google.maps.ControlPosition.TOP_LEFT
-            },
-            zoomControl: true,
-            zoomControlOptions: {
-                position: google.maps.ControlPosition.LEFT_CENTER
-            },
-            scaleControl: true,
-            streetViewControl: true,
-            streetViewControlOptions: {
-                position: google.maps.ControlPosition.LEFT_BOTTOM
-            },
-            fullscreenControl: false,
-            fullscreenControlOptions: {
-                position: google.maps.ControlPosition.TOP_RIGHT
-            },
-        });
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('search-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-
-          // Create the DIV to hold the control and call the CenterControl()
-          // constructor passing in this DIV.
-          var centerControlDiv = document.createElement('div');
-          var centerControl = new CenterControl(centerControlDiv, map);
-
-          centerControlDiv.index = 1;
-          map.controls[google.maps.ControlPosition.TOP_RIGHT].push(centerControlDiv);
-
-          var markers = [];
-          // Listen for the event fired when the user selects a prediction and retrieve
-          // more details for that place.
-          searchBox.addListener('places_changed', function() {
-              var places = searchBox.getPlaces();
-
-              //Console logs for places array;
-              console.log(places[0]);
-              console.log("{lat: ",places[0].geometry.location.lat(),"lng: ",places[0].geometry.location.lng(),"}");
-              console.log(places[0].geometry.location.lat());
-              console.log(places[0].geometry.location.lng());
-              console.log("title: ", places[0].name);
-              console.log("description: ", places[0].website);
-              //console.log("image: ", places[0].photos["0"].getUrl());
-
-              if (places.length == 0) {
-                  return;
-              }
-
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-              marker.setMap(null);
-          });
-          markers = [];
-
-              // For each place, get the icon, name and location.
-              var bounds = new google.maps.LatLngBounds();
-              places.forEach(function(place) {
-                  if (!place.geometry) {
-                      console.log("Returned place contains no geometry");
-                      return;
-                  }
-                  var icon = {
-                      url: place.icon,
-                      size: new google.maps.Size(71, 71),
-                      origin: new google.maps.Point(0, 0),
-                      anchor: new google.maps.Point(17, 34),
-                      scaledSize: new google.maps.Size(25, 25)
-                  };
-
-                  // Create a marker for each place.
-                  markers.push(new google.maps.Marker({
-                      map: map,
-                      icon: icon,
-                      title: place.name,
-                      position: place.geometry.location
-                  }));
-
-                  if (place.geometry.viewport) {
-                      // Only geocodes have viewport.
-                      bounds.union(place.geometry.viewport);
-                  } else {
-                      bounds.extend(place.geometry.location);
-                  }
-              });
-              map.fitBounds(bounds);
-          });
-
-        var marker = new google.maps.Marker({
-          position: {lat:  45.433047, lng: -73.875438},
-          map: map,
-          label: 'A'
-          //var iconDirectory: " ";
-          //icon: iconDirectory + 'ssc.png'
-          //,icon: '/Users/dave/ssc.png'
-        });
-
-
-        //Associate the styled map with the MapTypeId and set it to display.
-        map.mapTypes.set('styled_map', styledMapType);
-        map.setMapTypeId('styled_map');
-      }
-    </script>
 
   </body>
 </html>
