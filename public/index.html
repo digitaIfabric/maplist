@@ -3,7 +3,8 @@
     <title>maplist</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    
     <!-- App CSS -->
     <!--<link rel="stylesheet" href="/styles/layout.css" type="text/css"/>-->
 
@@ -47,6 +48,11 @@
           padding: 0 5px 0 5px;
           text-overflow: ellipsis;
           width: 175px;
+          position: absolute;
+          left: 50% !important;
+          top: 50% !important;
+          -webkit-transform: translate(-50%, -50%);
+          /*-webkit-transform: translate(0, -50%);*/
       }
 
       #name-input {
@@ -86,7 +92,7 @@
 
   </head>
   <body>
-  <input id="search-input" class="controls" type="text" placeholder="Add a location">
+  <input id="search-input" class="controls" type="text" placeholder="Search a location">
   <input id="name-input" class="controls" type="text" placeholder="Add a map name">
   <img src="images/new-map.png" class="new-map">
   <div id="map">
@@ -140,7 +146,9 @@
           zoom: 13,
           mapTypeControlOptions: {
             mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
-                    'styled_map']
+                    'styled_map'],
+            style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
+            position: google.maps.ControlPosition.TOP_LEFT
           },
             zoomControl: true,
             zoomControlOptions: {
