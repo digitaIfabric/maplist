@@ -46,3 +46,14 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
+
+// Get the list of maps created
+app.get("/maps", (req, res) => {
+  knex
+    .select("*")
+    .from("maps")
+    .then((results) => {
+      console.log('results', results);
+      res.json(results);
+    });
+})

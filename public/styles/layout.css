@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body h1 {
   color: #244751;
 }
@@ -61,6 +62,14 @@ html, body {
 #maps-div {
   top: 208px;
   right: 70px;
+=======
+body {
+  background-color: #EEE;
+}
+
+body h1 {
+  color: #244751;
+>>>>>>> b2c01d82fa9b39b48f6397ca700c0c7dba7465d0
 }
 
 #map {
@@ -73,6 +82,7 @@ html, body {
   padding: 0;
 }
 
+<<<<<<< HEAD
 .search-controls label {
   font-family: Roboto;
   font-size: 13px;
@@ -128,4 +138,54 @@ html, body {
   /*border-radius: 5px;*/
   /*margin: 0.3em;*/
   /*margin-right: 10px;*/
+=======
+.side-disp {
+  background-color: transparent;
+  color: #ff4a53;
+  border: none;
+  position: fixed;
+  font-size: 48px;
+  z-index: 1000;
+}
+
+#contributor-display {
+  top: 200px;
+  left: 10px;
+}
+
+.side-div {
+  background-color: rgba(255, 255, 255, 0.7);
+  color: red;
+  position: fixed;
+  padding: 8px;
+  font-size: 24px;
+  z-index: 999;
+  display: none;
+  border-radius: 5px;
+}
+
+#contributor-div {
+  top: 208px;
+  left: 70px;
+}
+
+#likes-display {
+  top: 400px;
+  left: 10px;
+}
+
+#likes-div {
+  top: 408px;
+  left: 70px;
+}
+
+#maps-display {
+  top: 200px;
+  right: 10px;
+}
+
+#maps-div {
+  top: 208px;
+  right: 70px;
+>>>>>>> b2c01d82fa9b39b48f6397ca700c0c7dba7465d0
 }

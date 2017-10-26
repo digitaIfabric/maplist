@@ -1,10 +1,13 @@
-$(() => {
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
+$(document).ready(function() {
+  $("#maps-display").on("click", function () {
+    $.ajax({
+      method: "GET",
+      url: "/maps"
+    }).done((maps) => {
+      $("#maps-div").empty();
+      for (map of maps) {
+        $("#maps-div").append(`<p class="map-name">${map.name}</p>`);
+      }
+    });
+  });
 });

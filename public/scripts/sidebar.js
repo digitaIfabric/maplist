@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
     $("#likes-display").click(function(){
         $("#likes-div").slideToggle("fast");
