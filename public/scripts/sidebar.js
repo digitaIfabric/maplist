@@ -6,4 +6,8 @@ $(document).ready(function() {
   $("#contributor-display").click(function(){
     $("#contributor-div").slideToggle("fast");
   });
+
+  $("#maps-display").click(function(){
+    $("#maps-div").slideToggle("fast");
+  });
 });
