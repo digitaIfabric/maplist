@@ -33,7 +33,8 @@ function CenterControl(controlDiv, map) {
 createInfoWindow = function(markerTitle, markerDesc){
 var WO = new google.maps.InfoWindow({
   maxWidth: 200,
-  content: '<h5>Title: </h5><p contenteditable="true">' + markerTitle + '</p>' +
+  maxHeight: 500,
+  content: '<h5 data-title="${map.id}" id="map-title">Title: </h5><p contenteditable="true">' + markerTitle + '</p>' +
   '<h5>Description: </h5><p contenteditable="true">' + markerDesc + '</p>' +
   '<h5>Image:</h5><img src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">' +
   '<button id="add-point-button">Add to map</button>'
@@ -131,7 +132,6 @@ function initMap() {
           });
         });
         markers = [];
-
 
         // For each place, get the icon, name and location.
         var bounds = new google.maps.LatLngBounds();

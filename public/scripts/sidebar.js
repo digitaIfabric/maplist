@@ -18,7 +18,7 @@ $(document).ready(function() {
         $("#name-input").slideToggle("fast");
         $("#name-input").select();
     });
-    // Enter key press event for adding points
+    // Enter key press event for adding map name
     $("#name-input").keypress(function(e) {
         if(e.which === 13) {
             var textInput = $("#name-input").val();
@@ -45,4 +45,12 @@ $(document).ready(function() {
             }
         }
     });
+
+  // Event to add points to db
+  var $selector = "#add-point-button"; //class for your infobox buttons list
+  $(document).on('click', $selector, function(e){
+    e.preventDefault();
+    alert("You added this point to the map (NOT YET)");
+  });
+
 });

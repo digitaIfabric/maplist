@@ -36,7 +36,20 @@ function getPoints(lat, lng, title) {
     title: title
   });
 
+  var contentString = '<p data-title="${title} id="map-title-edit">' + '${title}' + '</p>' +
+                      '<p data-description="${title} id="map-description-edit">' + '${description}: This is a test description' + '</p>';
+  var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
   //Associate the styled map with the MapTypeId and set it to display.
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
+
+  // Add listener
+  marker.addListener('click', function() {
+    infowindow.open(map, marker);
+  });
+
+
 }
