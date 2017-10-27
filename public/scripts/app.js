@@ -48,8 +48,28 @@ $(document).ready(function() {
       url: `/maps/${$mapId}`
     }).done((mapPoints) => {
       mapPoints.forEach((e) => {
-          getPoints(e.lat, e.lng, e.title, e.id, e.description, e.image);
+          getPoints(e.lat, e.lng, e.title, e.id, e.description, e.image, e.map_id);
       });
     });
   });
+
+  //editing the points in a single map
+  $var = $("#edit-point-button")
+  $(document).on("click", "#edit-point-button", function(e) {
+    const $mapId = $(this).parent().data("mapid");
+    const $pointId = $(this).parent().find("#map-title-edit").data("id");
+    $.ajax({
+      method: "POST",
+      url: `/maps/${$mapId}/points/${$pointId}`,
+      data: $(this).serialize()
+    }).done(() => {
+      console.log($(this));
+    })
+  });
 });
+
+
+
+
+
+

@@ -22,6 +22,10 @@ const usersRoutes = require("./routes/users");
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan('dev'));
 
+//global var object
+
+var globalVar = {};
+
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
 
@@ -66,6 +70,12 @@ app.get("/maps/:id", (req, res) => {
     .where("map_id", req.params.id)
     .then((results) => {
       console.log('results', results);
+      results.forEach(function(e) {
+        globalVar.title = e.title;
+        console.log('globalVar.title', globalVar.title);
+        globalVar.description = e.description;
+        console.log('globalVar.description', globalVar.description);
+      })
       res.json(results);
     });
 });
@@ -107,8 +117,15 @@ app.get("/maps/:id/contributors", (req, res) => {
     });
 });
 
-//update points in a map
+//edit points in a map
 app.post("/maps/:id/points/:pointId", (req, res) => {
-  knex
-    .select("*")
+  console.log(globalVar);
+  knex("points")
+    .where("id", req.params.pointId).andWhere("map_id", req.params.id)
+    .update({
+
+    })
+    .then((results) => {
+      results
+    })
 })
