@@ -106,3 +106,9 @@ app.get("/maps/:id/contributors", (req, res) => {
       });
     });
 });
+
+//update points in a map
+// app.post("/maps/:id/points/:pointId", (req, res) => {
+//   knex
+//     .select("*")
+// })
