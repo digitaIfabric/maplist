@@ -7,53 +7,46 @@ $(document).ready(function() {
     }).done((maps) => {
       $("#maps-div").empty();
       for (map of maps) {
-        $("#maps-div").append(`<p class="map-name">${map.name}</p>`);
+        $("#maps-div").append(`<p class="map-name" data-id="${map.id}">${map.name}</p>`);
       }
     });
   });
 
+  $("#maps-div").on("click", ".map-name", function(e) {
+    const $mapId = $(e.target).data("id");
+    $.ajax({
+      method: "GET",
+      url: `/maps/${$mapId}/likes`
+    }).done((likes) => {
+      $("#likes-div").empty();
+      likes.forEach(function(e) {
+        $("#likes-div").append(`<p>${e.user_name}</p>`);
+      });
+    });
+  });
 
-    // $('.new-tweet form').submit(function(event) {
-    //     console.log("Event Submitted")
-    //     event.preventDefault();
-    //     let tweetContent = $(this).find("textarea").val();
-    //     if (tweetContent === "") {
-    //         let $emptyTweetErr = $("<p>").text("Write something!").css("color", "red");
-    //         $("#errors").append($emptyTweetErr);
-    //     } else if ($(".counter").text() < 0){
-    //         let $counterTweetErr = $("<p>").text("Less than 280 characters!").css("color", "red");
-    //         $("#errors").append($counterTweetErr);
-    //     } else {
-    //         $("#errors").empty();
-    //         $.ajax({
-    //             url: '/tweets/',
-    //             method: 'POST',
-    //             // let serData = $( this ).serialize(),
-    //             data: $(this).serialize(),
-    //             success: function (tweet) {
-    //                 // this refers to the '.new-tweet form' selector
-    //                 //console.log(tweet);
-    //                 renderTweets([tweet]);
-    //
-    //             }
-    //
-    //         })
-    //
-    //     }
-    //
-    //
-    // })
+  $("#maps-div").on("click", ".map-name", function(e) {
+    const $mapId = $(e.target).data("id");
+    $.ajax({
+      method: "GET",
+      url: `/maps/${$mapId}/contributors`
+    }).done((contributors) => {
+      $("#contributor-div").empty();
+      contributors.forEach(function(e) {
+        $("#contributor-div").append(`<p>${e.user_name}</p>`);
+      });
+    });
+  });
 
-
-    // $("#maps-display").on("click", function () {
-    //     $.ajax({
-    //         method: "GET",
-    //         url: "/maps"
-    //     }).done((maps) => {
-    //         $("#maps-div").empty();
-    //     for (map of maps) {
-    //         $("#maps-div").append(`<p class="map-name">${map.name}</p>`);
-    //     }
-    // });
-
+  $("#maps-div").on("click", ".map-name", function(e) {
+    const $mapId = $(e.target).data("id");
+    $.ajax({
+      method: "GET",
+      url: `/maps/${$mapId}`
+    }).done((mapPoints) => {
+      mapPoints.forEach((e) => {
+          getPoints(e.lat, e.lng, e.title);
+      });
+    });
+  });
 });
