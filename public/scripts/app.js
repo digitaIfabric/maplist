@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+  //getting the list of maps
   $("#maps-display").on("click", function () {
     $.ajax({
       method: "GET",
@@ -12,6 +12,7 @@ $(document).ready(function() {
     });
   });
 
+  //getting likes
   $("#maps-div").on("click", ".map-name", function(e) {
     const $mapId = $(e.target).data("id");
     $.ajax({
@@ -25,6 +26,7 @@ $(document).ready(function() {
     });
   });
 
+  //getting contributors
   $("#maps-div").on("click", ".map-name", function(e) {
     const $mapId = $(e.target).data("id");
     $.ajax({
@@ -38,6 +40,7 @@ $(document).ready(function() {
     });
   });
 
+  //getting the points in a single map
   $("#maps-div").on("click", ".map-name", function(e) {
     const $mapId = $(e.target).data("id");
     $.ajax({
@@ -45,7 +48,7 @@ $(document).ready(function() {
       url: `/maps/${$mapId}`
     }).done((mapPoints) => {
       mapPoints.forEach((e) => {
-          getPoints(e.lat, e.lng, e.title);
+          getPoints(e.lat, e.lng, e.title, e.id, e.description, e.image);
       });
     });
   });
