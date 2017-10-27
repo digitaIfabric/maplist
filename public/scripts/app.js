@@ -6,23 +6,46 @@ $(document).ready(function() {
     }).done((maps) => {
       $("#maps-div").empty();
       for (map of maps) {
-        //append the data atr to the p tag
         $("#maps-div").append(`<p class="map-name" data-id="${map.id}">${map.name}</p>`);
       }
     });
   });
 
   $("#maps-div").on("click", ".map-name", function(e) {
-    console.log(e.target);
-    // console.log('Inside the .map-name');
-    //define var from data atr
     const $mapId = $(e.target).data("id");
-    console.log($mapId);
     $.ajax({
       method: "GET",
-      url: `/maps/${$mapId}/likes` //pass in the data atr
+      url: `/maps/${$mapId}/likes`
     }).done((likes) => {
-      console.log("Display is here!");
-    })
+      $("#likes-div").empty();
+      likes.forEach(function(e) {
+        $("#likes-div").append(`<p>${e.user_name}</p>`);
+      });
+    });
+  });
+
+  $("#maps-div").on("click", ".map-name", function(e) {
+    const $mapId = $(e.target).data("id");
+    $.ajax({
+      method: "GET",
+      url: `/maps/${$mapId}/contributors`
+    }).done((contributors) => {
+      $("#contributor-div").empty();
+      contributors.forEach(function(e) {
+        $("#contributor-div").append(`<p>${e.user_name}</p>`);
+      });
+    });
+  });
+
+  $("#maps-div").on("click", ".map-name", function(e) {
+    const $mapId = $(e.target).data("id");
+    $.ajax({
+      method: "GET",
+      url: `/maps/${$mapId}`
+    }).done((mapPoints) => {
+      mapPoints.forEach((e) => {
+          getPoints(e.lat, e.lng, e.title);
+      });
+    });
   });
 });

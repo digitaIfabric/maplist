@@ -57,17 +57,40 @@ app.get("/maps", (req, res) => {
     });
 });
 
-//Get the list of Users who contributed to and liked a map
+//get the points in a map
+app.get("/maps/:id", (req, res) => {
+  knex
+    .select("*")
+    .from("points")
+    .where("map_id", req.params.id)
+    .then((results) => {
+      console.log('results', results);
+      res.json(results);
+    });
+});
+
+//Get the list of Users who liked the map
 app.get("/maps/:id/likes", (req, res) => {
-  console.log(req.params.id);
   knex
     .select("*")
     .from("like_list").innerJoin("users", "user_id", "users.id")
     .where("map_id", req.params.id)
     .then((results) => {
       results.forEach(function(e) {
-        console.log(e.user_name);
+        res.json(results);
       });
     });
-})
+});
 
+//get the list of Users who contributed to the map
+app.get("/maps/:id/contributors", (req, res) => {
+  knex
+    .select("*")
+    .from("cont_list").innerJoin("users", "user_id", "users.id")
+    .where("map_id", req.params.id)
+    .then((results) => {
+      results.forEach(function(e) {
+        res.json(results);
+      });
+    });
+});
