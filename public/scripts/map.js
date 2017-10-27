@@ -21,7 +21,7 @@ function CenterControl(controlDiv, map) {
     controlText.style.lineHeight = '30px';
     controlText.style.paddingLeft = '5px';
     controlText.style.paddingRight = '5px';
-    controlText.innerHTML = 'Login';
+    controlText.innerHTML = 'Center map';
     controlUI.appendChild(controlText);
 
     // Setup the click event listeners: simply set the map to Chicago.
@@ -30,12 +30,16 @@ function CenterControl(controlDiv, map) {
     });
 }
 
-createInfoWindow = function(markerTitle){
+createInfoWindow = function(markerTitle, markerDesc){
 var WO = new google.maps.InfoWindow({
-  content: '<p>G' + markerTitle + '</p>'
-});
+  maxWidth: 200,
+  content: '<h5>Title: </h5><p contenteditable="true">' + markerTitle + '</p>' +
+  '<h5>Description: </h5><p contenteditable="true">' + markerDesc + '</p>' +
+  '<h5>Image:</h5><img src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">' +
+  '<button id="add-point-button">Add to map</button>'
+})
     return WO;
-}
+};
 
 function initMap() {
 
@@ -67,7 +71,7 @@ function initMap() {
         },
         fullscreenControl: false,
         fullscreenControlOptions: {
-            position: google.maps.ControlPosition.TOP_RIGHT
+            position: google.maps.ControlPosition.BOTTOM_CENTER
         },
     });
 
@@ -87,7 +91,7 @@ function initMap() {
     var centerControl = new CenterControl(centerControlDiv, map);
 
     centerControlDiv.index = 1;
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(centerControlDiv);
+    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
 
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve
@@ -107,7 +111,7 @@ function initMap() {
         if (places.length == 0) {
             return;
         }
-      
+
         var infowindows = {};
         // Clear out the old markers.
         markers.forEach(function(marker) {
@@ -152,7 +156,7 @@ function initMap() {
             }));
 
               markers[markers.length - 1].addListener('click', function() {
-                createInfoWindow(markers[markers.length -1].title).open(map, markers[markers.length - 1]);
+                createInfoWindow(markers[markers.length -1].title, markers[markers.length -1].website).open(map, markers[markers.length - 1]);
               });
 
           if (place.geometry.viewport) {
