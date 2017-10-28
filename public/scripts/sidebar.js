@@ -45,4 +45,13 @@ $(document).ready(function() {
             }
         }
     });
+
+    // Display search-input on click
+    $("#new-point-icon").click(function(){
+        if ($("#search-input").hasClass("exists")) {
+            $("#search-input").remove();
+        } else {
+            $("body").append(`<input id="search-input" class="controls exists" type="text" placeholder="Add a location">`);
+        }
+    });
 });
