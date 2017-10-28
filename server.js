@@ -75,7 +75,14 @@ app.post("/maps/new", (req, res) => {
     // const mapid = req.params.id;
     const mapName = req.body.name;
     knex('maps').insert({name: mapName}).then((results) => {
-        console.log("Added name to database");
+      //res.send({result: results});
+      //
+      // TODO DEBUG this and determine results.id is the right thing to send
+      //
+      res.send({ mapId : results.id });
+      console.log(results)
+      // const mapId = results.body.mapId;
+      console.log("Added name to database");
     }).catch((err) => {
         console.log("Error", err);
     })
@@ -85,10 +92,13 @@ app.post("/maps/new", (req, res) => {
 app.post("maps/:id/points/new", (req, res) => {
   // const mapid = req.params.id;
   // req.params.id
+  //
+  //
   const mapTitle = req.body.title;
-  console.log(mapTitle);
-  knex('points').insert({title: mapTitle}).where("map_id", req.params.id).then((results) => {
+  console.log("MAPTITLE is",mapTitle);
+  knex('points').insert({title: mapTitle}).where("map_id", 4).then((results) => {
     console.log("Added point title to database");
+
   }).catch((err) => {
     console.log("Error", err);
   })

@@ -30,7 +30,15 @@ $(document).ready(function() {
                 $.ajax({
                     method: "POST",
                     url: "/maps/new",
-                    data: {name: textInput}
+                    data: {name: textInput},
+                    //success: callback or function with response parameter
+                    success: function (data) {
+                      console.log(data);
+                      // TODO Check the data object and get the mapId
+                      $("#map").data("mapId", data);
+                      //$('#mydiv').data('myval',20); //setter
+
+                    }
                 }).done(() => {
                     console.log("POST map name");
                 }).fail((err) => {
@@ -57,16 +65,19 @@ $(document).ready(function() {
     points.title = $("#map-info").find("#map-title").val();
     var $title = points.title;
 
-    var $mapId = $(e.target).data("mapId");
+    // Getter
+    var $mapId = $('#map').data('mapId'); //getter
+    //var $mapId = $(e.target).data("mapId");
     $.ajax({
       method: "POST",
       url: `/maps/${$mapId}/points/new`,
       data: {title: $title}
-    }).done(() => {
-      console.log("POST map point");
+    }).done((msg) => {
+      console.log(msg);
+      alert( "Result:" + msg);
   }).fail((err) => {
       console.log({title: $title});
-    console.log("error");
+    console.log("This is an error");
   });
 
 
