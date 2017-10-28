@@ -1,4 +1,4 @@
-function testIfWorks (data) {
+function showPoints (data) {
   //retrieve & store the points data from the AJAX call
   var markers = data;
   console.log(markers);

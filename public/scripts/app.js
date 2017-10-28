@@ -47,15 +47,11 @@ $(document).ready(function() {
       method: "GET",
       url: `/maps/${$mapId}`
     }).done((mapPoints) => {
-      testIfWorks(mapPoints);
-      mapPoints.forEach((e) => {
-          // getPoints(e.lat, e.lng, e.title, e.id, e.description, e.image, e.map_id);
-      });
+      showPoints(mapPoints);
     });
   });
 
   //editing the points in a single map
-  $var = $("#edit-point-button")
   $(document).on("click", "#edit-point-button", function(e) {
     const $title = $("#map-title-edit").text();
     const $description = $("#map-description-edit").text();
@@ -70,6 +66,18 @@ $(document).ready(function() {
       }
     }).done(() => {
       console.log('we are in done');
+    })
+  });
+
+  //deleting the points in a single map
+  $(document).on("click", "#delete-point-button", function(e) {
+    const $mapId = $(this).parent().data("mapid");
+    const $pointId = $(this).parent().find("#map-title-edit").data("id");
+    $.ajax({
+      method: "POST",
+      url: `/maps/${$mapId}/points/${$pointId}/delete`
+    }).done(() => {
+      console.log('delete is in done');
     })
   });
 });
