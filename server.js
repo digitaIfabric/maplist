@@ -119,13 +119,16 @@ app.get("/maps/:id/contributors", (req, res) => {
 
 //edit points in a map
 app.post("/maps/:id/points/:pointId", (req, res) => {
-  console.log(globalVar);
   knex("points")
     .where("id", req.params.pointId).andWhere("map_id", req.params.id)
     .update({
-
+      title: req.body.title,
+      description: req.body.description
     })
     .then((results) => {
-      results
-    })
+      console.log("This is inside the results!")
+    });
+  //   .then((results) => {
+  //     results
+  //   })
 })

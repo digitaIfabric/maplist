@@ -56,14 +56,19 @@ $(document).ready(function() {
   //editing the points in a single map
   $var = $("#edit-point-button")
   $(document).on("click", "#edit-point-button", function(e) {
+    const $title = $("#map-title-edit").text();
+    const $description = $("#map-description-edit").text();
     const $mapId = $(this).parent().data("mapid");
     const $pointId = $(this).parent().find("#map-title-edit").data("id");
     $.ajax({
       method: "POST",
       url: `/maps/${$mapId}/points/${$pointId}`,
-      data: $(this).serialize()
+      data: {
+        title: $title,
+        description: $description
+      }
     }).done(() => {
-      console.log($(this));
+      console.log('we are in done');
     })
   });
 });
