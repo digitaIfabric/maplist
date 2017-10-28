@@ -37,7 +37,6 @@ $(document).ready(function() {
                     console.log({name: textInput});
                     console.log("error");
                 });
-
                 // alert("You added this map (NOT YET)");
                 $("#search-input").slideToggle("fast");
                 $("#name-input").slideToggle("fast");
@@ -51,6 +50,26 @@ $(document).ready(function() {
   $(document).on('click', $selector, function(e){
     e.preventDefault();
     alert("You added this point to the map (NOT YET)");
+    var points = {title: "hi"};
+    // $selector.slideToggle("fast");
+    // console.log("#map-title".val());
+    // points["title"] = $("#map-info").val();
+    points.title = $("#map-info").find("#map-title").val();
+    var $title = points.title;
+
+    var $mapId = $(e.target).data("mapId");
+    $.ajax({
+      method: "POST",
+      url: `/maps/${$mapId}/points/new`,
+      data: {title: $title}
+    }).done(() => {
+      console.log("POST map point");
+  }).fail((err) => {
+      console.log({title: $title});
+    console.log("error");
+  });
+
+
   });
 
 });

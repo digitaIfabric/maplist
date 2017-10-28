@@ -34,10 +34,11 @@ createInfoWindow = function(markerTitle, markerDesc){
 var WO = new google.maps.InfoWindow({
   maxWidth: 200,
   maxHeight: 500,
-  content: '<h5 data-title="${map.id}" id="map-title">Title: </h5><p contenteditable="true">' + markerTitle + '</p>' +
-  '<h5>Description: </h5><p contenteditable="true">' + markerDesc + '</p>' +
-  '<h5>Image:</h5><img src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">' +
-  '<button id="add-point-button">Add to map</button>'
+  // var contentString = `<div data-mapId="${mapId}"><h5 id="map-title">Title: </h5><p contenteditable="true" data-id="${pointId}" id="map-title-edit">${title}</p><h5>Description:</h5><p contenteditable="true" id="map-description-edit">${description}</p><h5>Image: </h5><img src="${image}" height="50" width="50"><br/><button id="edit-point-button">Edit point</button><br/><button id="delete-point-button">Delete point</button></div>`;
+  content:  `<div id="map-info"><h5 data-mapId="${map.id}"> Title: </h5><input id="map-title" value="${markerTitle}">
+            <h5>Description: </h5><input id="point-description" value="${markerDesc}"> 
+            <h5>Image:</h5><img src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
+            </br><button id="add-point-button">Add to map</button></div>`
 })
     return WO;
 };

@@ -70,6 +70,7 @@ app.get("/maps/:id", (req, res) => {
     });
 });
 
+// Insert map name into the database
 app.post("/maps/new", (req, res) => {
     // const mapid = req.params.id;
     const mapName = req.body.name;
@@ -78,7 +79,19 @@ app.post("/maps/new", (req, res) => {
     }).catch((err) => {
         console.log("Error", err);
     })
+});
 
+// Insert point into the database
+app.post("maps/:id/points/new", (req, res) => {
+  // const mapid = req.params.id;
+  // req.params.id
+  const mapTitle = req.body.title;
+  console.log(mapTitle);
+  knex('points').insert({title: mapTitle}).where("map_id", req.params.id).then((results) => {
+    console.log("Added point title to database");
+  }).catch((err) => {
+    console.log("Error", err);
+  })
 });
 
 //Get the list of Users who liked the map
