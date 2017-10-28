@@ -35,9 +35,9 @@ var WO = new google.maps.InfoWindow({
   maxWidth: 200,
   maxHeight: 500,
   // var contentString = `<div data-mapId="${mapId}"><h5 id="map-title">Title: </h5><p contenteditable="true" data-id="${pointId}" id="map-title-edit">${title}</p><h5>Description:</h5><p contenteditable="true" id="map-description-edit">${description}</p><h5>Image: </h5><img src="${image}" height="50" width="50"><br/><button id="edit-point-button">Edit point</button><br/><button id="delete-point-button">Delete point</button></div>`;
-  content:  `<div id="map-info"><h5 data-mapId="${map.id}"> Title: </h5><input id="map-title" value="${markerTitle}">
-            <h5>Description: </h5><input id="point-description" value="${markerDesc}"> 
-            <h5>Image:</h5><img src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
+  content:  `<div id="map-info" data-mapId="${map.id}"><h5> Title: </h5><input id="point-title" value="${markerTitle}">
+            <h5>Description: </h5><input id="point-description" value="${markerDesc}">
+            <h5>Image:</h5><img id="point-image" src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
             </br><button id="add-point-button">Add to map</button></div>`
 })
     return WO;
@@ -103,13 +103,13 @@ function initMap() {
         var places = searchBox.getPlaces();
 
         //Console logs for places array;
-        console.log(places[0]);
-        console.log("{lat: ",places[0].geometry.location.lat(),"lng: ",places[0].geometry.location.lng(),"}");
-        console.log(places[0].geometry.location.lat());
-        console.log(places[0].geometry.location.lng());
-        console.log("title: ", places[0].name);
-        console.log("description: ", places[0].website);
-        console.log("image: ", places[0].icon);
+        // console.log(places[0]);
+        // console.log("{lat: ",places[0].geometry.location.lat(),"lng: ",places[0].geometry.location.lng(),"}");
+        console.log("map.js lat: ", places[0].geometry.location.lat());
+        console.log("map.js lng: ", places[0].geometry.location.lng());
+        // console.log("title: ", places[0].name);
+        // console.log("description: ", places[0].website);
+        // console.log("image: ", places[0].icon);
 
         if (places.length == 0) {
             return;

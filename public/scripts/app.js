@@ -86,7 +86,6 @@ $("#name-input").keypress(function(e) {
             alert("You must write a map name!");
         }
         else {
-            console.log(textInput);
             $.ajax({
                 method: "POST",
                 url: "/maps/new",
@@ -105,10 +104,10 @@ $("#name-input").keypress(function(e) {
                 console.log({name: textInput});
                 console.log("error");
             });
-            // alert("You added this map (NOT YET)");
             // $("#search-input").slideToggle("fast");
             $("#name-input").slideToggle("fast");
             // $("#search-input").select();
+
         }
     }
 });
@@ -116,16 +115,20 @@ $("#name-input").keypress(function(e) {
 // Event to add points to db
 $(document).on('click', "#add-point-button", function(e){
 e.preventDefault();
-alert("You added this point to the map (NOT YET)");
-var points = {title: "hi"};
+var points = {title: "", description: "", };
 // $selector.slideToggle("fast");
 // console.log("#map-title".val());
 // points["title"] = $("#map-info").val();
-points.title = $("#map-info").find("#map-title").val();
+points.title = $("#map-info").find("#point-title").val();
+points.description = $("#map-info").find("#point-description").val();
 var $title = points.title;
-var $mapId = $('#map').data('mapId'); //getter
-console.log($mapId);
-//var $mapId = $(e.target).data("mapId");
+var $description = points.description;
+var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg";
+console.log("Point info: ", $title, $description, $image);
+var $mapId = $("#map-info").data("mapid"); //getter
+// var $mapId = 216; //getter
+console.log("The map id is: ", $mapId);
+// var $mapId = $(e.target).data("mapId");
   $.ajax({
     method: "POST",
     url: `/maps/${$mapId}/points/new`,
@@ -138,7 +141,5 @@ console.log($mapId);
     console.log("This is an error getting the maps id");
   });
 });
-
-
 
 });
