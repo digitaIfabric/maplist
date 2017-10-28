@@ -70,22 +70,58 @@ app.get("/maps/:id", (req, res) => {
     });
 });
 
-// Insert map name into the database
+// Insert map name into the database (Add data atribute to map div)
 app.post("/maps/new", (req, res) => {
     // const mapid = req.params.id;
     const mapName = req.body.name;
-    knex('maps').insert({name: mapName}).then((results) => {
+
+// function () {
+//   return Promise.all([
+//     knex('users').insert({id: 1, user_name: 'David', email_address: 'dwawryko@gmail.com'}),
+//     knex('users').insert({id: 2, user_name: 'Cem', email_address: 'cem.olcusenler@gmail.com'}),
+//
+// function (knex,callback) {
+//
+knex('maps')
+    .insert({name: mapName})
+    .then((results) => {
+        knex('maps')
+          .select('id')
+          .where('name', mapName)
+          .then((results) => {
+            console.log("New results: ",results);
+          }).catch((err) => {
+            console.log("Error: ",err);
+      })
+    })
+  .catch((err) => {
+    console.log("Error: ",err);
+  });
+
+// function(knex, Promise) {
+  //   return Promise.all([
+  // knex('maps').insert({name: mapName}),
+  // knex('maps').select('id').where('name', mapName).then((results) => {
+  //     console.log("Added map name to database");
+  //     console.log("New results",results);
+  //     console.log("Added map name to database");
+  //     }).catch((err) => {
+  //       console.log("Error", err);
+  //     });
+  //   ]);
+  // };
+      // knex('maps').insert({name: mapName}).then((results) => {
       //res.send({result: results});
       //
       // TODO DEBUG this and determine results.id is the right thing to send
-      //
-      res.send({ mapId : results.id });
-      console.log(results)
+      // SELECT id FROM maps WHERE name = mapName
+      //res.send({ mapId : results.rowCount });
+      //console.log("THIS is the results object",results);
       // const mapId = results.body.mapId;
-      console.log("Added name to database");
-    }).catch((err) => {
-        console.log("Error", err);
-    })
+
+    // }).catch((err) => {
+    //     console.log("Error", err);
+    // })
 });
 
 // Insert point into the database
@@ -93,10 +129,9 @@ app.post("maps/:id/points/new", (req, res) => {
   // const mapid = req.params.id;
   // req.params.id
   //
-  //
   const mapTitle = req.body.title;
   console.log("MAPTITLE is",mapTitle);
-  knex('points').insert({title: mapTitle}).where("map_id", 4).then((results) => {
+  knex('points').insert({title: mapTitle}).where("map_id", 5).then((results) => {
     console.log("Added point title to database");
 
   }).catch((err) => {

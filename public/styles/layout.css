@@ -135,6 +135,15 @@ html, body {
   /*margin-right: 10px;*/
 }
 
+.new-point {
+  height: 60px;
+  width: 60px;
+  position: absolute;
+  z-index: 3;
+  bottom: 100px;
+  right: 7px;
+}
+
 .side-disp {
   background-color: transparent;
   color: #ff4a53;

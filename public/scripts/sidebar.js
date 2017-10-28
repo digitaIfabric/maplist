@@ -1,19 +1,25 @@
 $(document).ready(function() {
-
+    // Display likes list
     $("#likes-display").click(function(){
         $("#likes-div").slideToggle("fast");
     });
 
+    // Display contributors list
     $("#contributor-display").click(function(){
         $("#contributor-div").slideToggle("fast");
     });
 
+    // Display to show map name div
     $("#maps-display").click(function(){
         $("#maps-div").slideToggle("fast");
     });
 
+    // Display search-input on click
+    $("#new-point-icon").click(function(){
+       $("#search-input").slideToggle("fast");
+    });
 
-    // Added click event for new icon map
+    // Display map name input on click
     $("#new-map-icon").click(function(){
         $("#name-input").slideToggle("fast");
         $("#name-input").select();
@@ -33,7 +39,7 @@ $(document).ready(function() {
                     data: {name: textInput},
                     //success: callback or function with response parameter
                     success: function (data) {
-                      console.log(data);
+                      console.log("The data is: ", data);
                       // TODO Check the data object and get the mapId
                       $("#map").data("mapId", data);
                       //$('#mydiv').data('myval',20); //setter
@@ -46,7 +52,7 @@ $(document).ready(function() {
                     console.log("error");
                 });
                 // alert("You added this map (NOT YET)");
-                $("#search-input").slideToggle("fast");
+                // $("#search-input").slideToggle("fast");
                 $("#name-input").slideToggle("fast");
                 // $("#search-input").select();
             }
@@ -67,6 +73,7 @@ $(document).ready(function() {
 
     // Getter
     var $mapId = $('#map').data('mapId'); //getter
+    console.log($mapId);
     //var $mapId = $(e.target).data("mapId");
     $.ajax({
       method: "POST",
@@ -77,7 +84,7 @@ $(document).ready(function() {
       alert( "Result:" + msg);
   }).fail((err) => {
       console.log({title: $title});
-    console.log("This is an error");
+    console.log("This is an error getting the maps id");
   });
 
 
