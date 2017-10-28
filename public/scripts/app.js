@@ -76,8 +76,8 @@ $(document).ready(function() {
     $.ajax({
       method: "POST",
       url: `/maps/${$mapId}/points/${$pointId}/delete`
-    }).done(() => {
-      console.log('delete is in done');
+    }).done((mapPoints) => {
+      console.log('Deleted.');
     })
   });
 });

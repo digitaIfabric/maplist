@@ -136,7 +136,7 @@ app.post("/maps/:id/points/:pointId/delete", (req, res) => {
     .where("id", req.params.pointId).andWhere("map_id", req.params.id)
     .del()
     .then((results) => {
-      console.log("Delete is inside the results!");
+      res.json(results);
     });
 });
 
