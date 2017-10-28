@@ -128,7 +128,10 @@ app.post("/maps/:id/points/:pointId", (req, res) => {
     .then((results) => {
       console.log("This is inside the results!")
     });
-  //   .then((results) => {
-  //     results
-  //   })
-})
+});
+
+//delete points from a map
+app.post("/maps/:id/points/:pointId/delete", (req, res) => {
+  knex("points")
+    .where("id", req.params.pointId).andWhere("map_id", req.params.id)
+});

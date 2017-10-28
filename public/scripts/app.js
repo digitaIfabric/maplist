@@ -47,8 +47,9 @@ $(document).ready(function() {
       method: "GET",
       url: `/maps/${$mapId}`
     }).done((mapPoints) => {
+      testIfWorks(mapPoints);
       mapPoints.forEach((e) => {
-          getPoints(e.lat, e.lng, e.title, e.id, e.description, e.image, e.map_id);
+          // getPoints(e.lat, e.lng, e.title, e.id, e.description, e.image, e.map_id);
       });
     });
   });
