@@ -6,6 +6,11 @@ body h1 {
   height: 100%;
 }
 
+.fa{
+  color: black !important;
+  zoom: 0.85;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -24,6 +29,7 @@ html, body {
 #contributor-display {
   top: 200px;
   left: 10px;
+  outline: none;
   // display: none;
 }
 
@@ -45,6 +51,7 @@ html, body {
 #likes-display {
   top: 400px;
   left: 10px;
+  outline: none;
   // display: none;
 }
 
@@ -56,12 +63,8 @@ html, body {
 #maps-display {
   top: 200px;
   right: 10px;
+  outline: none;
 
-}
-
-#maps-div {
-  top: 208px;
-  right: 70px;
 }
 
 // ==================================================================
@@ -136,6 +139,7 @@ html, body {
   z-index: 3;
   bottom: 14px;
   right: 7px;
+  outline: none;
   /*border: 1px solid black;*/
   /*border-radius: 5px;*/
   /*margin: 0.3em;*/
@@ -147,8 +151,9 @@ html, body {
   width: 60px;
   position: absolute;
   z-index: 3;
-  bottom: 100px;
+  bottom: 77px;
   right: 7px;
+  outline: none;
 }
 
 .side-disp { //for the buttons
@@ -198,6 +203,6 @@ html, body {
 }
 
 #maps-div {
-  top: 15px;
+  top: 25px;
   right: 70px;
 }
