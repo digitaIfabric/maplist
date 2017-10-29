@@ -98,6 +98,8 @@ knex('maps')
     console.log("Error: ",err);
   });
 
+});
+
 // function(knex, Promise) {
   //   return Promise.all([
   // knex('maps').insert({name: mapName}),
@@ -113,7 +115,6 @@ knex('maps')
       // knex('maps').insert({name: mapName}).then((results) => {
       //res.send({result: results});
       //
-      // TODO DEBUG this and determine results.id is the right thing to send
       // SELECT id FROM maps WHERE name = mapName
       //res.send({ mapId : results.rowCount });
       //console.log("THIS is the results object",results);
@@ -122,47 +123,49 @@ knex('maps')
     // }).catch((err) => {
     //     console.log("Error", err);
     // })
-});
+
+// // Insert point into the database
+// app.post("maps/:id/points/new", (req, res) => {
+//   // const mapid = req.params.id;
+//   // req.params.id
+//   // const pointLat = req.body.lat;
+//   // const pointLng = req.body.lng;
+//   // const mapId = req.body.map_id;
+//   // const pointTitle = req.body.title;
+//   // const pointDescription = req.body.description;
+//   // const pointImage = req.body.image;
+//   knex('points')
+//       .insert({lat: req.body.lat,
+//                lng: req.body.lng,
+//                map_id: req.body.map_id,
+//                title: req.body.title,
+//                description: req.body.description,
+//                image: req.body.image})
+//     .then((results) => {
+//         //res.json(results)
+//         console.log("Here are the server results: ", results);
+//     }).catch((err) => {
+//         console.log("Server error: ", err);
+//     })
+// });
 
 // Insert point into the database
+// TODO DEBUG this
 app.post("maps/:id/points/new", (req, res) => {
-  // const mapid = req.params.id;
-  // req.params.id
-  //
-  // const mapTitle = req.body.title;
-  // console.log("MAPTITLE is",mapTitle);
-  // knex('points').insert({title: mapTitle}).where("map_id", 5).then((results) => {
-  //   console.log("Added point title to database");
-  //
-  // }).catch((err) => {
-  //   console.log("Error", err);
-  // })
-  //res.send({result: results});
-  //
-  // TODO DEBUG this and determine results.id is the right thing to send
-  //
-  // res.send({ mapId : results.id });
-
-  // const pointLat = req.body.lat;
-  // const pointLng = req.body.lng;
-  // const mapId = req.body.map_id;
-  // const pointTitle = req.body.title;
-  // const pointDescription = req.body.description;
-  // const pointImage = req.body.image;
-  knex('points').insert({lat: req.body.lat,
-                         lng: req.body.lng,
-                         map_id: req.body.map_id,
-                         title: req.body.title,
-                         description: req.body.description,
-                         image: req.body.image}
-                        )
-    .then((results) => {
-        res.json(results)
-        console.log(results);
-    }).catch((err) => {
-        console.log("Error: ", err);
-})
-
+  const mapId = req.body.map_id;
+  knex('points')
+  .insert({
+            lat: req.body.lat,
+            lng: req.body.lng,
+            map_id: mapId,
+            title: req.body.title,
+            description: req.body.description,
+            image: req.body.image
+          }).then((results) => {
+          }).catch((err) => {
+            console.log(err);
+            res.status(400).send("Point marker error");
+          });
 });
 
 //Get the list of Users who liked the map
@@ -191,8 +194,5 @@ app.get("/maps/:id/contributors", (req, res) => {
     });
 });
 
-//update points in a map
-// app.post("/maps/:id/points/:pointId", (req, res) => {
-//   knex
-//     .select("*")
-// })
+
+

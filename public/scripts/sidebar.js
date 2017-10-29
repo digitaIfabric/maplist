@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     // Display map name input on click
     $("#new-map-icon").click(function(){
-        $("#name-input").slideToggle("slow");
+        $("#name-input").slideToggle("fast");
         $("#name-input").select();
     });
 

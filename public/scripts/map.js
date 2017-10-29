@@ -30,18 +30,56 @@ function CenterControl(controlDiv, map) {
     });
 }
 
+var WO;
+
 createInfoWindow = function(markerTitle, markerDesc, markerLat, markerLng){
 var WO = new google.maps.InfoWindow({
   maxWidth: 200,
   maxHeight: 500,
-  content:  `<div id="map-info" data-mapId="${map.id}"><h5> Title: </h5><input id="point-title" value="${markerTitle}">
+  pixelOffset: new google.maps.Size(-25,0),
+  content:  `<div id="map-info" data-mapid="${map.id}"><h5> Title: </h5><input id="point-title" value="${markerTitle}">
             <h5>Description: </h5><input id="point-description" value="${markerDesc}">
             <input id="point-lat" value="${markerLat}"> <input id="point-lng" value="${markerLng}">
             <h5>Image:</h5><img id="point-image" src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
             </br><button id="add-point-button">Add to map</button></div>`
 })
-    return WO;
+  return WO;
 };
+
+// function xyz(){
+//   alert('Add point to DB captured');
+//   //console.log(places[0].geometry.location.lat());
+//   //console.log(places[0].geometry.location.lng());
+//   console.log($("#map-info").find("#point-title").val());
+//   console.log($("#point-lat").val());
+//   console.log($("#point-lng").val());
+//   // var $mapId = $("#map-info").data("mapId"); //getter
+//   var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg";
+//   console.log("The mapId is: ", `${map.id}` );
+//
+//   $.ajax({
+//     method: "POST",
+//     url: "/maps/269/points/new",
+//     data: {lat: $("#point-lat").val(),
+//            lng: $("#point-lng").val(),
+//            map_id: 274,
+//            title: $("#map-info").find("#point-title").val(),
+//            description: $("#map-info").find("#point-description").val(),
+//            image: $image
+//           },
+//     success: function (data) {
+//       console.log("The data is: ", data);
+//     },
+//     error : function (xhr,status,error) {
+//       alert("Status: " + status);
+//       alert("Error: " + error);
+//       alert("xhr: " + xhr.readyState);
+//       console.log("error info: ", data.lat, data.lng, 274, data.title, data.description, data.image);
+//     }
+//     })
+//   //WO.close();
+//   // WO.setContent('<div style="background-color: green">'"</div>");
+// }
 
 function initMap() {
 
@@ -160,13 +198,16 @@ function initMap() {
                 title: place.name,
                 position: place.geometry.location,
                 lat: place.geometry.location.lat,
-                lng: place.geometry.location.lng
+                lng: place.geometry.location.lng,
+                animation: google.maps.Animation.DROP
             }));
 
               markers[markers.length - 1].addListener('click', function() {
                 var mark = markers[markers.length - 1];
                 createInfoWindow(mark.title, mark.website, lattitude, longitude).open(map, mark);
               });
+
+
 
           if (place.geometry.viewport) {
                 // Only geocodes have viewport.
@@ -182,5 +223,13 @@ function initMap() {
     map.mapTypes.set('styled_map', styledMapType);
     map.setMapTypeId('styled_map');
 
+    // Add point to database
+    //   map.addListener('bounds_changed', function() {
+    //     searchBox.setBounds(map.getBounds());
+    //   });
+
+
 
 }
+
+

@@ -132,6 +132,7 @@ html, body {
   z-index: 3;
   bottom: 14px;
   right: 7px;
+  outline: none;
   /*border: 1px solid black;*/
   /*border-radius: 5px;*/
   /*margin: 0.3em;*/
@@ -145,6 +146,17 @@ html, body {
   z-index: 3;
   bottom: 77px;
   right: 7px;
+  outline: none;
+}
+
+.avatar {
+  height: 45px;
+  width: 45px;
+  position: absolute;
+  z-index: 3;
+  top: 20px;
+  left: 15px;
+  outline: none;
 }
 
 .side-disp {
@@ -157,7 +169,7 @@ html, body {
 }
 
 #contributor-display {
-  top: 200px;
+  top: 77px;
   left: 10px;
 }
 
@@ -174,17 +186,17 @@ html, body {
 }
 
 #contributor-div {
-  top: 208px;
+  top: 85px;
   left: 70px;
 }
 
 #likes-display {
-  top: 400px;
+  top: 150px;
   left: 10px;
 }
 
 #likes-div {
-  top: 408px;
+  top: 157px;
   left: 70px;
 }
 

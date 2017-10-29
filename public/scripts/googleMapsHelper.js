@@ -33,7 +33,8 @@ function getPoints(lat, lng, title) {
   var marker = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title: title
+    title: title,
+    animation: google.maps.Animation.DROP
   });
 
   var contentString = '<p data-title="${title} id="map-title-edit">' + '${title}' + '</p>' +

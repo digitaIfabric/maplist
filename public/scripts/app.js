@@ -112,51 +112,35 @@ $("#name-input").keypress(function(e) {
     }
 });
 
-// Event to add points to db
+//Event to add points to db
 $(document).on('click', "#add-point-button", function(e){
 e.preventDefault();
-var points = {};
-// $selector.slideToggle("fast");
-// console.log("#map-title".val());
-points.title = $("#map-info").find("#point-title").val();
-points.description = $("#map-info").find("#point-description").val();
-points.lat = $("#point-lat").val();
-points.lng = $("#point-lng").val();
-// Console log
-// console.log($("#map-info").find("h5#point-lng").val());
-points.mapId = $("#map-info").data("mapid");
-var $title = points.title;
-var $description = points.description;
+// points.title = $("#map-info").find("#point-title").val();
+// points.description = $("#map-info").find("#point-description").val();
+// points.lat = $("#point-lat").val();
+// points.lng = $("#point-lng").val();
+// points.mapId = $("#map-info").data("mapid");
 var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg";
-var $lat = points.lat;
-console.log("YOUR lat point is: ", $lat);
-var $lng = points.lng;
-var $mapId = points.mapId;
-console.log("Point info: ",  $lat, $lng, $title, $description, $image);
-var $mapId = $("#map-info").data("mapid"); //getter
-// var $mapId = 216; //getter
-console.log("The map id is: ", $mapId);
-//var $mapId = $(e.target).data("mapId");
+var $mapId = $("#map-info").data("mapid");
   $.ajax({
     method: "POST",
     url: `/maps/${$mapId}/points/new`,
-    data: {lat: $lat,
-           lng: $lng,
-           map_id: $mapId,
-           title: $title,
-           description: $description,
+    data: {lat: $("#point-lat").val(),
+           lng: $("#point-lng").val(),
+           map_id: $("#map-info").data("mapid"),
+           title:  $("#map-info").find("#point-title").val(),
+           description: $("#map-info").find("#point-description").val(),
            image: $image
           },
-    success: () => {
-    console.log('Point added to database');
+    success: function (data) {
+      console.log("The data is: ", data);
+    },
+    error : function (xhr,status,error) {
+      alert("Status: " + status);
+      alert("Error: " + error);
+      alert("xhr: " + xhr.readyState);
+      console.log("error info data: ", data);
     }
-  }).done(() => {
-    // console.log(msg);
-    console.log("POST points");
-  // alert( "Result:" + msg);
-  }).fail((err) => {
-    console.log($lat,$lng,$mapId,$title,$description,$image);
-    console.log("Error points POST");
   });
 });
 
