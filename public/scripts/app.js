@@ -90,50 +90,52 @@ $(document).ready(function() {
       url: `/users/${$userName}`
     }).done((userInfo) => {
         let idArr = [];
-        let counter = 0;
         let counterObj = {};
-        console.log(userInfo[0][0].name);
+        console.log(userInfo[0]);
         $("#user-profile-likes > #likers").empty();
         $("#user-profile-likes > #contributors").empty();
-        userInfo.forEach((e, index) => {
-          e.forEach((el) => {
-            console.log(el);
-            idArr.push(el.id);
-            console.log('idArr:',idArr)
-            for (var i = 0; i < idArr.length; i++) {
-              if (idArr[index] === idArr[i]) {
-                console.log('aldready exists');
-              }
-            }
-            // idArr.forEach((element) => {
-            //   if (element === el.id) {
-            //     console.log('element: ', element, 'id: ', el.id);
-            //     counter += 1;
-            //     console.log(counter);
-            //   }
-            //   if (counter > 1) {
-            //     console.log('above will appended to likes');
-            //     $("#user-profile-likes > #likers").append(`<p>${el.name}</p>`);
-            //     return true;
-            //   } else if (counter <= 1) {
-            //     console.log('above will be appended to conts')
-            //     $("#user-profile-likes > #contributors").append(`<p>${el.name}</p>`);
-            //   }
-            // })
-
-          });
+        userInfo[0].forEach((e) => {
+          console.log(e.name);
+          $("#user-profile-likes > #contributors").append(`<p>${toTitleCase(e.name)}</p>`);
         });
-        console.log($("#user-profile-likes > #likers").text());
+        userInfo[1].forEach((e) => {
+          $("#user-profile-likes > #likers").append(`<p>${toTitleCase(e.name)}</p>`);
+        });
     });
   });
 
   $(document).on("click", "#contributor-div > p", function(e) {
     const $userName = $("#contributor-div").text();
+    $.ajax({
+      method: "GET",
+      url: `/users/${$userName}`
+    }).done((userInfo) => {
+        let idArr = [];
+        let counterObj = {};
+        console.log(userInfo[0]);
+        $("#user-profile-contributors > #likers").empty();
+        $("#user-profile-contributors > #contributors").empty();
+        userInfo[0].forEach((e) => {
+          console.log(e.name);
+          $("#user-profile-contributors > #contributors").append(`<p>${toTitleCase(e.name)}</p>`);
+        });
+        userInfo[1].forEach((e) => {
+          $("#user-profile-contributors > #likers").append(`<p>${toTitleCase(e.name)}</p>`);
+        });
+    });
   });
 
 
-});
+  $(document).on("click", "#contributor-div > p", function(e) {
+    const $userName = $("#contributor-div").text();
+  });
 
+  //function to capitalize first letters after space
+  function toTitleCase(str)
+  {
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  }
+});
 
 
 
