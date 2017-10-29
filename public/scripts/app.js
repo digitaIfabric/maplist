@@ -120,13 +120,16 @@ var points = {};
 // console.log("#map-title".val());
 points.title = $("#map-info").find("#point-title").val();
 points.description = $("#map-info").find("#point-description").val();
-points.lat = $("#map-info").find("#point-lat").val();
-points.lng = $("#map-info").find("#point-lng").val();
+points.lat = $("#map-info").find("h5#point-lat").val();
+points.lng = $("#map-info").find("h5#point-lng").val();
+// Console log
+console.log($("#map-info").find("h5#point-lng").val());
 points.mapId = $("#map-info").data("mapid");
 var $title = points.title;
 var $description = points.description;
 var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg";
 var $lat = points.lat;
+console.log("YOUR point is: ", $lat);
 var $lng = points.lng;
 var $mapId = points.mapId;
 console.log("Point info: ", $title, $description, $image, $lat, $lng);
@@ -148,7 +151,7 @@ console.log("The map id is: ", $mapId);
     console.log(msg);
     alert( "Result:" + msg);
   }).fail((err) => {
-    console.log({title: $title});
+    console.log($lat,$lng,$mapId,$title,$description,$image);
     console.log("This is an error getting the maps id");
   });
 });

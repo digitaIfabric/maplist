@@ -129,14 +129,40 @@ app.post("maps/:id/points/new", (req, res) => {
   // const mapid = req.params.id;
   // req.params.id
   //
-  const mapTitle = req.body.title;
-  console.log("MAPTITLE is",mapTitle);
-  knex('points').insert({title: mapTitle}).where("map_id", 5).then((results) => {
-    console.log("Added point title to database");
+  // const mapTitle = req.body.title;
+  // console.log("MAPTITLE is",mapTitle);
+  // knex('points').insert({title: mapTitle}).where("map_id", 5).then((results) => {
+  //   console.log("Added point title to database");
+  //
+  // }).catch((err) => {
+  //   console.log("Error", err);
+  // })
+  //res.send({result: results});
+  //
+  // TODO DEBUG this and determine results.id is the right thing to send
+  //
+  // res.send({ mapId : results.id });
 
-  }).catch((err) => {
-    console.log("Error", err);
-  })
+  const pointLat = req.body.lat;
+  const pointLng = req.body.lng;
+  const mapId = req.body.map_id;
+  const pointTitle = req.body.title;
+  const pointDescription = req.body.description;
+  const pointImage = req.body.image;
+  knex('points').insert({lat: pointLat},
+                        {lng: pointLng},
+                        {map_id: mapId},
+                        {title: title},
+                        {description: pointDescription},
+                        {image: pointImage}
+                        ).innerJoin("map_id", "map_id").then((results) => {
+  console.log(results)
+  console.log("Added point to database");
+}).catch((err) => {
+  console.log("Error", err);
+})
+
+
 });
 
 //Get the list of Users who liked the map

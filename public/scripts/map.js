@@ -36,7 +36,7 @@ var WO = new google.maps.InfoWindow({
   maxHeight: 500,
   content:  `<div id="map-info" data-mapId="${map.id}"><h5> Title: </h5><input id="point-title" value="${markerTitle}">
             <h5>Description: </h5><input id="point-description" value="${markerDesc}">
-            <h5 id="point-lat" ${markerLat}> <h5 id="point-lng" ${markerLng}>
+            <input id="point-lat" value="${markerLat}"> <input id="point-lng" value="${markerLng}">
             <h5>Image:</h5><img id="point-image" src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
             </br><button id="add-point-button">Add to map</button></div>`
 })
@@ -105,10 +105,12 @@ function initMap() {
         //Console logs for places array;
         // console.log(places[0]);
         // console.log("{lat: ",places[0].geometry.location.lat(),"lng: ",places[0].geometry.location.lng(),"}");
-        // console.log("map.js lat: ", places[0].geometry.location.lat());
+        console.log("map.js lat: ", places[0].geometry.location.lat());
         var lattitude = places[0].geometry.location.lat();
-        // console.log("map.js lng: ", places[0].geometry.location.lng());
+        console.log("Lattitude:",lattitude)
+        console.log("map.js lng: ", places[0].geometry.location.lng());
         var longitude = places[0].geometry.location.lng();
+        console.log("Longitude:",longitude)
         // console.log("title: ", places[0].name);
         // console.log("description: ", places[0].website);
         // console.log("image: ", places[0].icon);
