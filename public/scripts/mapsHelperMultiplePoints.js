@@ -32,6 +32,11 @@ function showPoints (data) {
       },
   });
 
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('search-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
   //create an Info Window Content array, will loop thru the data array
   var infoWindowContent = [];
   markers.forEach(function(e) {
