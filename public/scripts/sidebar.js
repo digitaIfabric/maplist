@@ -12,6 +12,15 @@ $(document).ready(function() {
         $("#maps-div").slideToggle("fast");
     });
 
+    // Display the user profile on clicking the user name in likes-div
+    $(document).on("click", "#likes-div > p", function(e) {
+        $("#user-profile-likes").slideToggle("fast");
+    });
+
+    //Display the user profile on clicking the user name in contributor-div
+    $(document).on("click", "#contributor-div > p", function(e) {
+        $("#user-profile-contributors").slideToggle("fast");
+    });
 
     // Added click event for new icon map
     $("#new-map-icon").click(function(){

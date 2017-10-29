@@ -82,6 +82,15 @@ $(document).ready(function() {
     })
   });
 
+  //getting the user profiles
+  $(document).on("click", "#likes-div > p", function(e) {
+    const $userName = $("#likes-div").text();
+  });
+
+  $(document).on("click", "#contributor-div > p", function(e) {
+    const $userName = $("#contributor-div").text();
+  });
+
 
 });
 
