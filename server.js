@@ -140,4 +140,20 @@ app.post("/maps/:id/points/:pointId/delete", (req, res) => {
     });
 });
 
+//get the user profile
+app.get("/users/:username", (req, res) => {
+  return Promise.all([
+    knex
+      .select("*")
+      .from("users").innerJoin("cont_list", "user_id", "users.id").innerJoin("maps", "maps.id", "map_id")
+      .where("user_name", req.params.username),
+    knex
+      .select("*")
+      .from("users").innerJoin("like_list", "user_id", "users.id").innerJoin("maps", "maps.id", "map_id")
+      .where("user_name", req.params.username)
+    ]).then((results) => {
+        res.json(results)
+      });
+});
+
 
