@@ -115,24 +115,35 @@ $("#name-input").keypress(function(e) {
 // Event to add points to db
 $(document).on('click', "#add-point-button", function(e){
 e.preventDefault();
-var points = {title: "", description: "", };
+var points = {};
 // $selector.slideToggle("fast");
 // console.log("#map-title".val());
-// points["title"] = $("#map-info").val();
 points.title = $("#map-info").find("#point-title").val();
 points.description = $("#map-info").find("#point-description").val();
+points.lat = $("#map-info").find("#point-lat").val();
+points.lng = $("#map-info").find("#point-lng").val();
+points.mapId = $("#map-info").data("mapid");
 var $title = points.title;
 var $description = points.description;
 var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg";
-console.log("Point info: ", $title, $description, $image);
-var $mapId = $("#map-info").data("mapid"); //getter
+var $lat = points.lat;
+var $lng = points.lng;
+var $mapId = points.mapId;
+console.log("Point info: ", $title, $description, $image, $lat, $lng);
+// var $mapId = $("#map-info").data("mapid"); //getter
 // var $mapId = 216; //getter
 console.log("The map id is: ", $mapId);
 // var $mapId = $(e.target).data("mapId");
   $.ajax({
     method: "POST",
     url: `/maps/${$mapId}/points/new`,
-    data: {title: $title}
+    data: {lat: $lat,
+           lng: $lng,
+           map_id: $mapId,
+           title: $title,
+           description: $description,
+           image: $image
+          }
   }).done((msg) => {
     console.log(msg);
     alert( "Result:" + msg);
