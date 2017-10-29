@@ -105,12 +105,12 @@ function initMap() {
         //Console logs for places array;
         // console.log(places[0]);
         // console.log("{lat: ",places[0].geometry.location.lat(),"lng: ",places[0].geometry.location.lng(),"}");
-        console.log("map.js lat: ", places[0].geometry.location.lat());
+        // console.log("map.js lat: ", places[0].geometry.location.lat());
         var lattitude = places[0].geometry.location.lat();
-        console.log("Lattitude:",lattitude)
-        console.log("map.js lng: ", places[0].geometry.location.lng());
+        // console.log("Lattitude:",lattitude)
+        // console.log("map.js lng: ", places[0].geometry.location.lng());
         var longitude = places[0].geometry.location.lng();
-        console.log("Longitude:",longitude)
+        // console.log("Longitude:",longitude)
         // console.log("title: ", places[0].name);
         // console.log("description: ", places[0].website);
         // console.log("image: ", places[0].icon);

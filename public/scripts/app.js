@@ -120,23 +120,23 @@ var points = {};
 // console.log("#map-title".val());
 points.title = $("#map-info").find("#point-title").val();
 points.description = $("#map-info").find("#point-description").val();
-points.lat = $("#map-info").find("h5#point-lat").val();
-points.lng = $("#map-info").find("h5#point-lng").val();
+points.lat = $("#point-lat").val();
+points.lng = $("#point-lng").val();
 // Console log
-console.log($("#map-info").find("h5#point-lng").val());
+// console.log($("#map-info").find("h5#point-lng").val());
 points.mapId = $("#map-info").data("mapid");
 var $title = points.title;
 var $description = points.description;
 var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg";
 var $lat = points.lat;
-console.log("YOUR point is: ", $lat);
+console.log("YOUR lat point is: ", $lat);
 var $lng = points.lng;
 var $mapId = points.mapId;
-console.log("Point info: ", $title, $description, $image, $lat, $lng);
-// var $mapId = $("#map-info").data("mapid"); //getter
+console.log("Point info: ",  $lat, $lng, $title, $description, $image);
+var $mapId = $("#map-info").data("mapid"); //getter
 // var $mapId = 216; //getter
 console.log("The map id is: ", $mapId);
-// var $mapId = $(e.target).data("mapId");
+//var $mapId = $(e.target).data("mapId");
   $.ajax({
     method: "POST",
     url: `/maps/${$mapId}/points/new`,
@@ -146,13 +146,17 @@ console.log("The map id is: ", $mapId);
            title: $title,
            description: $description,
            image: $image
-          }
-  }).done((msg) => {
-    console.log(msg);
-    alert( "Result:" + msg);
+          },
+    success: () => {
+    console.log('Point added to database');
+    }
+  }).done(() => {
+    // console.log(msg);
+    console.log("POST points");
+  // alert( "Result:" + msg);
   }).fail((err) => {
     console.log($lat,$lng,$mapId,$title,$description,$image);
-    console.log("This is an error getting the maps id");
+    console.log("Error points POST");
   });
 });
 
