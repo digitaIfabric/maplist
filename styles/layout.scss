@@ -156,6 +156,12 @@ html, body {
   /*margin-right: 10px;*/
 }
 
+.new-map:hover{
+  width: 65px;
+  height: 65px;
+}
+
+
 .new-point {
   height: 60px;
   width: 60px;
@@ -166,6 +172,11 @@ html, body {
   outline: none;
 }
 
+.new-point:hover{
+  width: 65px;
+  height: 65px;
+}
+
 .avatar {
   height: 45px;
   width: 45px;
@@ -174,6 +185,12 @@ html, body {
   top: 20px;
   left: 15px;
   outline: none;
+}
+
+.avatar:hover{
+  //height: 50px;
+  //width: 50px;
+  zoom: 1.10;
 }
 
 .side-disp { //for the buttons
@@ -188,6 +205,12 @@ html, body {
 #contributor-display {
   top: 77px;
   left: 10px;
+  width: 50px;
+  height: 50px;
+}
+
+#contributor-display:hover {
+  zoom: 1.04;
 }
 
 .side-div { //for the display div
@@ -208,9 +231,16 @@ html, body {
 }
 
 #likes-display {
-  top: 150px;
+  top: 145px;
   left: 10px;
+  height: 50px;
+  width: 50px;
 }
+
+#likes-display:hover {
+  zoom: 1.03;
+}
+
 
 #likes-div {
   top: 157px;
@@ -222,7 +252,28 @@ html, body {
   right: 10px;
 }
 
+#maps-display:hover {
+  zoom: 1.07;
+}
+
 #maps-div {
   top: 25px;
   right: 70px;
+}
+
+.gm-style-iw {
+  width: 250px;
+  min-height: 275px;
+}
+
+#point-lat {
+  display: none;
+}
+
+#point-lng {
+  display: none;
+}
+
+textarea{
+  resize: none;
 }

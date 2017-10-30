@@ -1,15 +1,20 @@
-# Node Skeleton
+# WikiMaps - maplist.world
 
-## Project Setup
+## Team Members
+- [Cem Olcusenler](https://github.com/mcemolcusenler)
+- [David Wawryko](https://github.com/digitalfabric92)
 
-1. Create your own empty repo on GitHub
-2. Clone this repository (do not fork)
-  - Suggestion: When cloning, specify a different folder name that is relevant to your project
-3. Remove the git remote: `git remote rm origin`
-4. Add a remote for your origin: `git remote add origin <your github repo URL>`
-5. Push to the new origin: `git push -u origin master`
-6. Verify that the skeleton code now shows up in your repo on GitHub
+## Project
 
+A web app that allows users to collaboratively create maps which list multiple "points", for example: "Best Places to Eat Around Town" or "Locations of Movie Scenes". Inspired by [Lighthouse Labs](https://github.com/lighthouse-labs). Project still in development.
+1. Users can see a list of the available maps
+2. Users can view a map
+3. A map can contain many points
+4. Each point can have: a title, description, and image
+5. Authenticated users can create maps*  
+6. Authenticated users can modify maps (add, edit, remove points)*
+7. Users can favourite a map*
+8. Users have profiles, indicating their favourite maps and maps they've contributed to
 ## Getting Started
 
 1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
@@ -25,5 +30,15 @@
 
 ## Dependencies
 
-- Node 5.10.x or above
-- NPM 3.8.x or above
+- "Node": 5.10.x or above
+- "NPM": 3.8.x or above
+- "body-parser": "^1.15.2",
+- "dotenv": "^4.0.0",
+- "express": "^4.13.4",
+- "knex": "^0.13.0",
+- "Morgan": "^1.7.0",
+- "node-sass": "4.3.0",
+- "node-sass-middleware": "^0.11.0",
+- "pg": "^7.0.1"
+
+ ## Screenshots

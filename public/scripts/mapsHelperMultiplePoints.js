@@ -245,8 +245,8 @@ function showPoints (data) {
           animation: google.maps.Animation.DROP
         }));
 
-        markersSearch[markers.length - 1].addListener('click', function() {
-          var mark = markersSearch[markers.length - 1];
+        markersSearch[markersSearch.length - 1].addListener('click', function() {
+          var mark = markersSearch[markersSearch.length - 1];
           createInfoWindow(mark.title, mark.website, lattitude, longitude).open(map, mark);
         });
 

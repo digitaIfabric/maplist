@@ -37,11 +37,11 @@ var WO = new google.maps.InfoWindow({
   maxWidth: 200,
   maxHeight: 500,
   pixelOffset: new google.maps.Size(-25,0),
-  content:  `<div id="map-info" data-mapid="${map.id}"><h5> Title: </h5><input id="point-title" value="${markerTitle}">
-            <h5>Description: </h5><input id="point-description" value="${markerDesc}">
+  content:  `<div id="map-info" data-mapid="${map.id}"><p><strong>Title:</strong></p><input id="point-title" value="${markerTitle}">
+            <p><strong>Description:</strong></p><textarea rows="3" cols="18" id="point-description" value="${markerDesc}"></textarea>
             <input id="point-lat" value="${markerLat}"> <input id="point-lng" value="${markerLng}">
-            <h5>Image:</h5><img id="point-image" src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
-            </br><button id="add-point-button">Add to map</button></div>`
+            <p><strong>Image:</strong></p><img id="point-image" src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
+            </br></br><button id="add-point-button">Add to map</button></div>`
 })
   return WO;
 };
