@@ -42,6 +42,8 @@ $(document).ready(function() {
 
   //getting the points in a single map
   $("#maps-div").on("click", ".map-name", function(e) {
+    $(".map-name").css("text-decoration", "none");
+    $(this).css("text-decoration", "underline");
     $("body").append(`<input id="search-input" class="controls exists" type="text" placeholder="Add a location" autocomplete="off" style="z-index: 0; position: absolute; left: 0px; top: 0px;">`);
     const $mapId = $(e.target).data("id");
     $.ajax({
