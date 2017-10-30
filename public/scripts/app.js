@@ -128,14 +128,14 @@ points.lng = $("#point-lng").val();
 console.log("Hello", points);
 var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg";
 // var $mapId = $("#map-info").data("mapid");
-var $mapId = $("#map-info").data("mapid"); //getter
-console.log("YOUR MAP ID IS: ",$mapId);
+// var $mapId = $("#map-info").data("mapid"); //getter
+// console.log("YOUR MAP ID IS: ",$mapId);
   $.ajax({
     method: "POST",
-    url: `/maps/296/points/new`,
+    url: `/maps/316/points/new`,
     data: {lat: points.lat,
            lng: points.lng,
-           map_id: $mapId,
+           map_id: 316,
            title: points.title,
            description: points.description,
            image: $image

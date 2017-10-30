@@ -62,6 +62,28 @@ app.get("/maps", (req, res) => {
     });
 });
 
+// Insert point into the database
+// TODO DEBUG this
+app.post("/maps/:id/points/new", (req, res) => {
+  console.log("Server post for new point")
+  console.log(req.body);
+//const $mapId = req.body.map_id;
+  knex('points')
+    .insert({
+      lat: req.body.lat,
+      lng: req.body.lng,
+      map_id: req.body.map_id,
+      title: req.body.title,
+      description: req.body.description,
+      image: req.body.image
+    }).then((results) => {
+    res.status(200).send();
+  }).catch((err) => {
+    console.log(err);
+    res.status(400).send("Point marker error");
+  });
+});
+
 //get the points in a map
 app.get("/maps/:id", (req, res) => {
   knex
@@ -81,7 +103,6 @@ app.get("/maps/:id", (req, res) => {
 });
 
 // Insert map name into the database (Add data atribute to map div)
-
 app.post("/maps/new", (req, res) => {
   // const mapid = req.params.id;
   const mapName = req.body.name;
@@ -174,27 +195,6 @@ app.post("/maps/new", (req, res) => {
 //     })
 // });
 
-// Insert point into the database
-// TODO DEBUG this
-app.post("maps/:id/points/new", (req, res) => {
-  console.log("Server post for new point")
-  console.log(req.body);
-  //const $mapId = req.body.map_id;
-  knex('points')
-  .insert({
-            lat: req.body.lat,
-            lng: req.body.lng,
-            map_id: req.body.map_id,
-            title: req.body.title,
-            description: req.body.description,
-            image: req.body.image
-          }).then((results) => {
-          }).catch((err) => {
-            console.log(err);
-            res.status(400).send("Point marker error");
-          });
-});
-
 //Get the list of Users who liked the map
 app.get("/maps/:id/likes", (req, res) => {
   knex
@@ -222,17 +222,17 @@ app.get("/maps/:id/contributors", (req, res) => {
 });
 
 //edit points in a map
-app.post("/maps/:id/points/:pointId", (req, res) => {
-  knex("points")
-    .where("id", req.params.pointId).andWhere("map_id", req.params.id)
-    .update({
-      title: req.body.title,
-      description: req.body.description
-    })
-    .then((results) => {
-      console.log("This is inside the results!")
-    });
-});
+// app.post("/maps/:id/points/:pointId", (req, res) => {
+//   knex("points")
+//     .where("id", req.params.pointId).andWhere("map_id", req.params.id)
+//     .update({
+//       title: req.body.title,
+//       description: req.body.description
+//     })
+//     .then((results) => {
+//       console.log("This is inside the results!")
+//     });
+// });
 
 //delete points from a map
 app.post("/maps/:id/points/:pointId/delete", (req, res) => {
