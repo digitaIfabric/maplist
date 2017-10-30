@@ -42,3 +42,7 @@ A web app that allows users to collaboratively create maps which list multiple "
 - "pg": "^7.0.1"
 
  ## Screenshots
+ 
+ [Homescreen]()
+ [List of maps]()
+ [Mobile]()
