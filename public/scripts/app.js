@@ -42,6 +42,7 @@ $(document).ready(function() {
 
   //getting the points in a single map
   $("#maps-div").on("click", ".map-name", function(e) {
+    $("body").append(`<input id="search-input" class="controls exists" type="text" placeholder="Add a location" autocomplete="off" style="z-index: 0; position: absolute; left: 0px; top: 0px;">`);
     const $mapId = $(e.target).data("id");
     $.ajax({
       method: "GET",
@@ -50,6 +51,7 @@ $(document).ready(function() {
       mapPoints.forEach((e) => {
           getPoints(e.lat, e.lng, e.title, e.id, e.description, e.image, e.map_id);
       });
+      showPoints(mapPoints);
     });
   });
 
@@ -71,7 +73,6 @@ $(document).ready(function() {
       console.log('we are in done');
     })
   });
-
 
 
 // =======================================================================
@@ -143,5 +144,66 @@ var $mapId = $("#map-info").data("mapid");
     }
   });
 });
+
+});
+  //deleting the points in a single map
+  $(document).on("click", "#delete-point-button", function(e) {
+    const $mapId = $(this).parent().data("mapid");
+    const $pointId = $(this).parent().find("#map-title-edit").data("id");
+    $.ajax({
+      method: "POST",
+      url: `/maps/${$mapId}/points/${$pointId}/delete`
+    }).done((mapPoints) => {
+      console.log('Deleted.');
+    })
+  });
+
+  //getting the user profiles
+  $(document).on("click", "#likes-div > p", function(e) {
+    const $userName = $("#likes-div").text();
+    $.ajax({
+      method: "GET",
+      url: `/users/${$userName}`
+    }).done((userInfo) => {
+        let idArr = [];
+        let counter = 0;
+        let counterObj = {};
+        console.log(userInfo[0][0].name);
+        $("#user-profile-likes > #likers").empty();
+        $("#user-profile-likes > #contributors").empty();
+        userInfo.forEach((e, index) => {
+          e.forEach((el) => {
+            console.log(el);
+            idArr.push(el.id);
+            console.log('idArr:',idArr)
+            for (var i = 0; i < idArr.length; i++) {
+              if (idArr[index] === idArr[i]) {
+                console.log('aldready exists');
+              }
+            }
+            // idArr.forEach((element) => {
+            //   if (element === el.id) {
+            //     console.log('element: ', element, 'id: ', el.id);
+            //     counter += 1;
+            //     console.log(counter);
+            //   }
+            //   if (counter > 1) {
+            //     console.log('above will appended to likes');
+            //     $("#user-profile-likes > #likers").append(`<p>${el.name}</p>`);
+            //     return true;
+            //   } else if (counter <= 1) {
+            //     console.log('above will be appended to conts')
+            //     $("#user-profile-likes > #contributors").append(`<p>${el.name}</p>`);
+            //   }
+            // })
+
+          });
+        });
+        console.log($("#user-profile-likes > #likers").text());
+    });
+
+  $(document).on("click", "#contributor-div > p", function(e) {
+    const $userName = $("#contributor-div").text();
+  });
 
 });

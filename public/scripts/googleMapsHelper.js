@@ -1,5 +1,5 @@
 //this is a helper function which should get triggered by app.js in the .done statement
-function getPoints(lat, lng, title) {
+function getPoints(lat, lng, title, pointId, description, image, mapId) {
   var myLatLng = {lat: lat, lng: lng};
 
   var styledMapType = new google.maps.StyledMapType(
@@ -43,6 +43,13 @@ function getPoints(lat, lng, title) {
     content: contentString
   });
 
+  var contentString = `<div data-mapId="${mapId}"><h5 id="map-title">Title: </h5><p contenteditable="true" data-id="${pointId}" id="map-title-edit">${title}</p><h5>Description:</h5><p contenteditable="true" id="map-description-edit">${description}</p><h5>Image: </h5><img src="${image}" height="50" width="50"><br/><button id="edit-point-button">Edit point</button><br/><button id="delete-point-button">Delete point</button></div>`;
+  var infowindow = new google.maps.InfoWindow({
+    maxWidth: 200,
+    maxHeight: 500,
+    content: contentString
+  });
+
   //Associate the styled map with the MapTypeId and set it to display.
   map.mapTypes.set('styled_map', styledMapType);
   map.setMapTypeId('styled_map');
@@ -51,6 +58,5 @@ function getPoints(lat, lng, title) {
   marker.addListener('click', function() {
     infowindow.open(map, marker);
   });
-
 
 }
