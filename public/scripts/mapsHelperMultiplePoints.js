@@ -2,7 +2,7 @@
 function showPoints (data) {
   //retrieve & store the points data from the AJAX call
   var markers = data;
-  console.log(markers);
+  // console.log(markers);
 
   //initialize a map that is centered in Montreal
   var styledMapType = new google.maps.StyledMapType(
@@ -43,7 +43,7 @@ function showPoints (data) {
   markers.forEach(function(e) {
     infoWindowContent.push(`<div data-mapId="${e.map_id}"><h5 id="map-title">Title: </h5><p contenteditable="true" data-id="${e.id}" id="map-title-edit">${e.title}</p><h5>Description:</h5><p contenteditable="true" id="map-description-edit">${e.description}</p><h5>Image: </h5><img src="${e.image}" height="50" width="50"><br/><button id="edit-point-button">Edit point</button><br/><button id="delete-point-button">Delete point</button></div>`);
   })
-  console.log(infoWindowContent);
+  // console.log(infoWindowContent);
 
   // Display multiple markers on a map
   var infoWindow = new google.maps.InfoWindow({maxWidth: 200, maxHeight: 500, pixelOffset: new google.maps.Size(-25,0)/*, content: infoWindowContent[i]}*/}), marker, i;
@@ -81,11 +81,11 @@ function showPoints (data) {
       maxWidth: 200,
       maxHeight: 500,
       pixelOffset: new google.maps.Size(-25,0),
-      content:  `<div id="map-info" data-mapid="${map.id}"><h5> Title: </h5><input id="point-title" value="${markerTitle}">
-            <h5>Description: </h5><input id="point-description" value="${markerDesc}">
+      content:  `<div id="map-info" data-mapid="${map.id}"><p><strong>Title:</strong></p><input id="point-title" value="${markerTitle}">
+            <p><strong>Description:</strong></p><textarea rows="3" cols="18" id="point-description" value="${markerDesc}"></textarea>
             <input id="point-lat" value="${markerLat}"> <input id="point-lng" value="${markerLng}">
-            <h5>Image:</h5><img id="point-image" src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
-            </br><button id="add-point-button">Add to map</button></div>`
+            <p><strong>Image:</strong></p><img id="point-image" src="https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg" height="50" width="50">
+            </br></br><button id="add-point-button">Add to map</button></div>`
     })
     return WO;
   };

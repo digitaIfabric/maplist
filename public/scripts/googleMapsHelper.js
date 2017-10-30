@@ -9,13 +9,14 @@ function getPoints(lat, lng, title, pointId, description, image, mapId) {
       center: {lat: 45.4998913, lng: -73.5605561},
       zoom: 13,
       mapControl: false,
+      mapTypeControl: false,
       mapTypeControlOptions: {
           mapTypeIds: ['roadmap', 'satellite', 'hybrid', 'terrain',
               'styled_map'],
           style: google.maps.MapTypeControlStyle.HORIZONTAL_BAR,
           position: google.maps.ControlPosition.TOP_LEFT
       },
-      zoomControl: true,
+      zoomControl: false,
       zoomControlOptions: {
           position: google.maps.ControlPosition.LEFT_CENTER
       },
@@ -47,6 +48,7 @@ function getPoints(lat, lng, title, pointId, description, image, mapId) {
   var infowindow = new google.maps.InfoWindow({
     maxWidth: 200,
     maxHeight: 500,
+    pixelOffset: new google.maps.Size(-25,0),
     content: contentString
   });
 

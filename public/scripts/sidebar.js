@@ -35,6 +35,9 @@ $(document).ready(function() {
         $("#name-input").select();
     });
 
+      // $("#new-point-icon").click(function(){
+      //   $("#search-input").css('z-index', 10);
+      // });
 
     //=============================
     //             // alert("You added this map (NOT YET)");

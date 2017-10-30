@@ -82,7 +82,7 @@ app.get("/maps/:id", (req, res) => {
 
 // Insert map name into the database (Add data atribute to map div)
 app.post("/maps/new", (req, res) => {
-    // const mapid = req.params.id;
+    //const mapid = req.params.id;
     const mapName = req.body.name;
 
 // function () {
@@ -161,13 +161,16 @@ knex('maps')
 
 // Insert point into the database
 // TODO DEBUG this
-app.post("maps/:id/points/new", (req, res) => {
-  const mapId = req.body.map_id;
+app.post("maps/296/points/new", (req, res) => {
+  console.log("It doesn't work?")
+  console.log(req.body);
+  //const $mapId = req.body.map_id;
   knex('points')
   .insert({
+            id: 7,
             lat: req.body.lat,
             lng: req.body.lng,
-            map_id: mapId,
+            map_id: 296,
             title: req.body.title,
             description: req.body.description,
             image: req.body.image
