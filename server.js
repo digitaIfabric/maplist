@@ -81,9 +81,44 @@ app.get("/maps/:id", (req, res) => {
 });
 
 // Insert map name into the database (Add data atribute to map div)
+
 app.post("/maps/new", (req, res) => {
-    //const mapid = req.params.id;
-    const mapName = req.body.name;
+  // const mapid = req.params.id;
+  const mapName = req.body.name;
+  knex('maps').insert({name: mapName}).then((results) => {
+    console.log("Added name to database");
+  }).catch((err) => {
+    console.log("Error", err);
+  })
+
+});
+
+
+
+
+
+// app.post("/maps/new", (req, res) => {
+//     //const mapid = req.params.id;
+//     const mapName = req.body.name;
+//
+//
+// knex('maps')
+//     .insert({name: mapName})
+//     .then((results) => {
+//         knex('maps')
+//           .select('id')
+//           .where('name', mapName)
+//           .then((results) => {
+//             console.log("New results: ",results);
+//           }).catch((err) => {
+//             console.log("Error: ",err);
+//       })
+//     })
+//   .catch((err) => {
+//     console.log("Error: ",err);
+//   });
+//
+// });
 
 // function () {
 //   return Promise.all([
@@ -92,23 +127,6 @@ app.post("/maps/new", (req, res) => {
 //
 // function (knex,callback) {
 //
-knex('maps')
-    .insert({name: mapName})
-    .then((results) => {
-        knex('maps')
-          .select('id')
-          .where('name', mapName)
-          .then((results) => {
-            console.log("New results: ",results);
-          }).catch((err) => {
-            console.log("Error: ",err);
-      })
-    })
-  .catch((err) => {
-    console.log("Error: ",err);
-  });
-
-});
 
 // function(knex, Promise) {
   //   return Promise.all([
@@ -161,16 +179,15 @@ knex('maps')
 
 // Insert point into the database
 // TODO DEBUG this
-app.post("maps/296/points/new", (req, res) => {
-  console.log("It doesn't work?")
+app.post("maps/:id/points/new", (req, res) => {
+  console.log("Server post for new point")
   console.log(req.body);
   //const $mapId = req.body.map_id;
   knex('points')
   .insert({
-            id: 7,
             lat: req.body.lat,
             lng: req.body.lng,
-            map_id: 296,
+            map_id: req.body.map_id,
             title: req.body.title,
             description: req.body.description,
             image: req.body.image

@@ -204,7 +204,7 @@ function initMap() {
 
               markers[markers.length - 1].addListener('click', function() {
                 var mark = markers[markers.length - 1];
-                createInfoWindow(mark.title, mark.website, lattitude, longitude).open(map, mark);
+                createInfoWindow(mark.title, "Write your description here", lattitude, longitude).open(map, mark);
               });
 
 

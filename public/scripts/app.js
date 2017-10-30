@@ -125,11 +125,10 @@ points.description = $("#map-info").find("#point-description").val();
 points.lat = $("#point-lat").val();
 points.lng = $("#point-lng").val();
 // points.mapId = $("#map-info").data("mapid"); //undefined
-points.mapId = 296;
 console.log("Hello", points);
 var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg";
 // var $mapId = $("#map-info").data("mapid");
-var $mapId = 296;
+var $mapId = $("#map-info").data("mapid"); //getter
 console.log("YOUR MAP ID IS: ",$mapId);
   $.ajax({
     method: "POST",
