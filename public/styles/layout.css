@@ -98,7 +98,7 @@ html, body {
   font-family: Roboto;
   font-size: 50px;
   font-weight: 300;
-  margin-top: 100px;
+  margin-top: 230px;
   /*margin-left: 12px;*/
   padding: 0 5px 0 5px;
   text-overflow: ellipsis;
@@ -108,7 +108,8 @@ html, body {
   top: 10px !important;
   /*top: 50% !important;*/
   -webkit-transform: translate(-50%, -50%);
-  z-index: -5 !important;
+  z-index: 5 !important;
+  display: none;
 }
 
 #name-input {

@@ -14,6 +14,8 @@ INSERT INTO points (id, lat, lng, map_id, title, description, image)
     VALUES (5, 45.5011694, -73.5678161, 1, 'Espace Café', 'Snug, warm espresso bar serving a menu of panini, pastries & wraps in a grand stone building.', 'https://s3-media3.fl.yelpcdn.com/bphoto/fjHgawVuphOlUqJof5D_bw/o.jpg');
 
 INSERT INTO points (id, lat, lng, map_id, title, description, image) VALUES (7, 45.502331, -73.5614527, 1, 'Crew Colletive & Café', 'My favourite place to get coffee', 'https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg');
+INSERT INTO points (id, lat, lng, map_id, title, description, image) VALUES (7, 45.502331, -73.5614527, 3, 'Crew Colletive & Café', 'My favourite place to get coffee', 'https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.jpg');
+
 
 INSERT INTO points (id, lat, lng, map_id, title, description, image) VALUES (8, 45.5241048, -73.60025009999998, 1, 'Café Olimpico', 'Good bagels', 'http://www.eligiblemagazine.com/wp-content/uploads/2015/06/cafe_olimpico_converted.jpg');
 
@@ -21,3 +23,24 @@ INSERT INTO points (id, lat, lng, map_id, title, description, image) VALUES (8, 
 INSERT INTO like_list (id, map_id, user_id) VALUES (3, 1, 2);
 INSERT INTO like_list (id, map_id, user_id) VALUES (4, 2, 2);
 INSERT INTO cont_list (id, map_id, user_id) VALUES (3, 2, 2);
+
+
+DELETE FROM cont_list WHERE id=3;
+DELETE FROM cont_list WHERE id=4;
+DELETE FROM like_list WHERE id=3;
+DELETE FROM like_list WHERE id=4;
+
+
+
+
+DELETE FROM cont_list WHERE id=1;
+INSERT INTO cont_list (id, map_id, user_id) VALUES (3, 1, 2);
+
+
+
+UPDATE points SET image = 'https://s3-media2.fl.yelpcdn.com/bphoto/iASpsjav5aRCXCUxZADzDA/ls.jpg' WHERE id=3;
+
+UPDATE points SET image = 'https://s3-media1.fl.yelpcdn.com/bphoto/TmQawabhE2nfPpUvJuZqxg/180s.jpg' WHERE id=2;
+
+-- vape lion 3
+-- vaporus 2

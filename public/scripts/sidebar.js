@@ -35,10 +35,10 @@ $(document).ready(function() {
         $("#name-input").select();
     });
 
-      // $("#new-point-icon").click(function(){
-      //   $("#search-input").css('z-index', 10);
-      //   alert(event);
-      // });
+      $("#new-point-icon").click(function(){
+        // alert("HEY");
+        $("#search-input").slideToggle("fast");
+      });
 
     //=============================
     //             // alert("You added this map (NOT YET)");
@@ -51,11 +51,10 @@ $(document).ready(function() {
     //=============================
 
     //Display search-input on click
-    $("#new-point-icon").click(function(){
-        if ($("#search-input").hasClass("exists")) {
-            $("#search-input").remove();
-        };
-    });
-
+    // $("#new-point-icon").click(function(){
+    //     if ($("#search-input").hasClass("exists")) {
+    //         $("#search-input").remove();
+    //     };
+    // });
 
 });
