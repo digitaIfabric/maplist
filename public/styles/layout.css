@@ -108,7 +108,7 @@ html, body {
   top: 10px !important;
   /*top: 50% !important;*/
   -webkit-transform: translate(-50%, -50%);
-  z-index: 5 !important;
+  z-index: -5 !important;
 }
 
 #name-input {

@@ -37,6 +37,7 @@ $(document).ready(function() {
 
       // $("#new-point-icon").click(function(){
       //   $("#search-input").css('z-index', 10);
+      //   alert(event);
       // });
 
     //=============================

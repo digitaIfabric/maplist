@@ -116,7 +116,7 @@ html, body {
   /*top: 50% !important;*/
   -webkit-transform: translate(-50%, -50%);
   // display: none;
-  z-index: 5 !important;
+  z-index: -5 !important;
 }
 
 #name-input {

@@ -94,9 +94,6 @@ app.post("/maps/new", (req, res) => {
 });
 
 
-
-
-
 // app.post("/maps/new", (req, res) => {
 //     //const mapid = req.params.id;
 //     const mapName = req.body.name;
