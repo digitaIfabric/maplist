@@ -204,8 +204,6 @@ var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.j
     });
   });
 
-
-
   $(document).on("click", "#contributor-div > p", function(e) {
     const $userName = $("#contributor-div").text();
 });
