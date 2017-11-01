@@ -132,10 +132,10 @@ var $image = "https://s3-media3.fl.yelpcdn.com/bphoto/J74IH84zwxBnpjkrW_gn9Q/o.j
 // console.log("YOUR MAP ID IS: ",$mapId);
   $.ajax({
     method: "POST",
-    url: `/maps/316/points/new`,
+    url: `/maps/324/points/new`,
     data: {lat: points.lat,
            lng: points.lng,
-           map_id: 316,
+           map_id: 324,
            title: points.title,
            description: points.description,
            image: $image

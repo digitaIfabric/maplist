@@ -46,3 +46,10 @@ UPDATE points SET image = 'https://s3-media1.fl.yelpcdn.com/bphoto/TmQawabhE2nfP
 
 -- vape lion 3
 -- vaporus 2
+
+
+
+DELETE FROM points WHERE map_id=319;
+DELETE FROM cont_list WHERE map_id=319;
+DELETE FROM like_list WHERE map_id=319;
+DELETE FROM maps WHERE id=319;
