@@ -30,6 +30,7 @@ html, body {
   top: 200px;
   left: 10px;
   outline: none;
+  display: none;
 }
 
 .side-div {
@@ -39,33 +40,37 @@ html, body {
   padding: 8px;
   font-size: 24px;
   z-index: 999;
-  display: none;
 }
 
 #user-profile-likes {
   top: 157px;
   left: 150px;
+  display: none;
 }
 
 #user-profile-contributors {
   top: 85px;
   left: 150px;
+  display: none;
 }
 
 #contributor-div {
   top: 208px;
   left: 70px;
+  display: none;
 }
 
 #likes-display {
   top: 400px;
   left: 10px;
   outline: none;
+  display: none;
 }
 
 #likes-div {
   top: 408px;
   left: 70px;
+  display: none;
 }
 
 #maps-display {
@@ -98,14 +103,13 @@ html, body {
   font-family: Roboto;
   font-size: 50px;
   font-weight: 300;
-  margin-top: 230px;
+  margin-top: 100px;
   /*margin-left: 12px;*/
   padding: 0 5px 0 5px;
   text-overflow: ellipsis;
-  width: 400px;
+  width: 367px;
   position: absolute;
   left: 50% !important;
-  top: 10px !important;
   /*top: 50% !important;*/
   -webkit-transform: translate(-50%, -50%);
   z-index: 5 !important;
@@ -122,10 +126,10 @@ html, body {
   font-weight: 300;
   padding: 0 5px 0 5px;
   text-overflow: ellipsis;
-  width: 400px;
+  width: 367px;
   position: absolute;
   left: 50% !important;
-  top: 50% !important;
+  top: 45% !important;
   -webkit-transform: translate(-50%, -50%);
   z-index: 2;
   display: none;
@@ -155,8 +159,8 @@ html, body {
 }
 
 .new-point {
-  height: 60px;
-  width: 60px;
+  height: 61px;
+  width: 61px;
   position: absolute;
   z-index: 3;
   bottom: 77px;
@@ -174,7 +178,7 @@ html, body {
   width: 45px;
   position: absolute;
   z-index: 3;
-  top: 20px;
+  top: 15px;
   left: 15px;
   outline: none;
 }
