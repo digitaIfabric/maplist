@@ -131,8 +131,8 @@ function initMap() {
     var centerControlDiv = document.createElement('div');
     var centerControl = new CenterControl(centerControlDiv, map);
 
-    centerControlDiv.index = 1;
-    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+    // centerControlDiv.index = -5;
+    // map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
 
     var markers = [];
     // Listen for the event fired when the user selects a prediction and retrieve

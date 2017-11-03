@@ -174,8 +174,8 @@ function showPoints (data) {
     var centerControlDiv = document.createElement('div');
     var centerControl = new CenterControl(centerControlDiv, map);
 
-    centerControlDiv.index = 1;
-    map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
+    // centerControlDiv.index = 1;
+    // map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
 
     var markersSearch = [];
     // Listen for the event fired when the user selects a prediction and retrieve

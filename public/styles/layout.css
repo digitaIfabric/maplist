@@ -110,6 +110,7 @@ html, body {
   width: 367px;
   position: absolute;
   left: 50% !important;
+  border: none;
   /*top: 50% !important;*/
   -webkit-transform: translate(-50%, -50%);
   z-index: 5 !important;
@@ -130,6 +131,7 @@ html, body {
   position: absolute;
   left: 50% !important;
   top: 45% !important;
+  border: none;
   -webkit-transform: translate(-50%, -50%);
   z-index: 2;
   display: none;
